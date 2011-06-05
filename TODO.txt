@@ -1,0 +1,8 @@
+This is the moving todo list.
+If you see something that needs to get done, put it here.
+Want to do something on the list? Put your name next to it.
+
+Code random location finding algorithm
+Implement config file
+create thread that spawns the monsters
+add change monster command
