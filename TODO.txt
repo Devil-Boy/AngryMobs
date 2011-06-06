@@ -8,5 +8,5 @@ create thread that spawns the monsters
 add change monster command
 
 <Devil's TODO list>
-Import and integrate Configuration class
+Import and integrate Configuration class [Done, need to test for errors]
 Make a function alertNearbyMOnsters(Player player)

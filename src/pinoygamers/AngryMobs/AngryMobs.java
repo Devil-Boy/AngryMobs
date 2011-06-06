@@ -11,6 +11,8 @@ import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
+import pinoygamers.AngryMobs.Configuration;
+
 /**
  * AngryMobs for Bukkit
  *
@@ -20,10 +22,15 @@ public class AngryMobs extends JavaPlugin {
     private final AngryMobsPlayerListener playerListener = new AngryMobsPlayerListener(this);
     private final AngryMobsBlockListener blockListener = new AngryMobsBlockListener(this);
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
+    Configuration pluginSettings;
+    String pluginMainDir = "./plugins/AngryMobs";
+    String pluginConfigLocation = pluginMainDir + "/AngryMobs.cfg";
+    public boolean debug = false;
+    public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
 
     public AngryMobs() {
         super();
-        // TODO: Place any custom initialisation code here
+        // TODO: Place any custom initialization code here
 
         // NOTE: Event registration should be done in onEnable not here as all events are unregistered when a plugin is disabled
     }

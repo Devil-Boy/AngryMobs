@@ -1,0 +1,19 @@
+#
+# AngryMobs Configuration
+#
+
+# Debug Messages
+#	This can activate debug output messages for if you
+#	understand the source code and want to find the origin
+#	of and issue.
+debug=false
+
+# Monster Alert Range
+#	Here you set the distance (in blocks) at which a monster
+#	entity will target your player.
+alertRange=16
+
+# Monster Spawn Proximity
+#	The minimum distance (in blocks) that a monster can spawn
+#	from a player.
+monsterSpawnDistance=24
