@@ -1,6 +1,8 @@
 package pinoygamers.AngryMobs;
 
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.CreatureType;
@@ -97,6 +99,41 @@ public class Functions {
      */
     public static double distance(Location a, Location b) {
     	return distance(a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
+    }
+    
+    /**
+     * Returns a random chunk from a given world.
+     * @param w The world
+     * @return
+     */
+    public static Chunk randomChunk(World w){
+    	java.util.Random generator = new java.util.Random();
+    	Chunk[] loadedChunks = w.getLoadedChunks(); // an array of loaded chunks
+    	
+    	return loadedChunks[generator.nextInt(loadedChunks.length)];
+    }
+    
+    /**
+     * Returns a random block from a given world.
+     * @param w the world
+     * @return
+     */
+    public static Block randomBlock(World w){
+    	return randomBlock(randomChunk(w));
+    }
+    
+    /**
+     * Returns a random block from a given chunk.
+     * @param c The chunk
+     * @return
+     */
+    public static Block randomBlock(Chunk c){
+    	java.util.Random generator = new java.util.Random();
+    	int randX = generator.nextInt(16);
+    	int randZ = generator.nextInt(16);
+    	int randY = generator.nextInt(128);
+    	
+    	return c.getBlock(randX, randY, randZ);
     }
 
 }
