@@ -115,6 +115,11 @@ public class Configuration implements java.io.Serializable {
         return value;
     }
     
+    /**
+	 * Converts a LinkedList into a String separated by commas.
+	 * @param list The LinkedList to convert.
+	 * @return A string with the values of the LinkedList separate by commas.
+	 */
     public String linkedListToString(LinkedList<String> list) {
     	if(list.size() > 0) {
     		String compounded = "";
@@ -132,6 +137,9 @@ public class Configuration implements java.io.Serializable {
     	return "";
     }
     
+    /**
+	 * Creates the configuration file using either the defaults or preset values.
+	 */
     public void createConfig() {
     	try{
     		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(plugin.pluginConfigLocation)));
