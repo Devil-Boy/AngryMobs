@@ -47,7 +47,7 @@ public class AngryMobs extends JavaPlugin {
         // NOTE: All registered events are automatically unregistered when a plugin is disabled
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
-        System.out.println("Goodbye world!");
+        System.out.println("AngryMobs disabled!");
     }
     public boolean isDebugging(final Player player) {
         if (debugees.containsKey(player)) {
