@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.CreatureType;
+import java.lang.Math;
 
 /**
  * All functions that will be used in more than one class should be put
@@ -68,6 +69,13 @@ public class Functions {
     public static String capitalCase(String s)
     {
         return s.toUpperCase().charAt(0) + s.toLowerCase().substring(1);
+    }
+    
+    public static double distance(double x1, double y1, double z1, double x2, double y2, double z2) {
+    	double distance=0;
+
+        distance=Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2)+Math.pow((z2-z1),2));
+        return distance;
     }
 
 }
