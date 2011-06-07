@@ -159,9 +159,10 @@ public class Functions {
     /**
      * Makes all monsters within the configured range of a player begin to attack him.
      * @param player The unlucky individual
+     * @param range The dimensions of the safety box around the player.
      */
-    public void alertNearbyMonsters(Player player) {
-    	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(16, 16, 16).toArray(); // Radius will be configurable later on
+    public void alertNearbyMonsters(Player player, int range) {
+    	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // Radius will be configurable later on
     	for (int i=0; i<theCrowd.length; i++) {
 			if (theCrowd[i] instanceof Monster) {
     			((Creature) theCrowd[i]).setTarget(player);
