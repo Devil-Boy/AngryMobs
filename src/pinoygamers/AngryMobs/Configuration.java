@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.*;
 
+import org.bukkit.World.Environment;
+
 /**
  * Editable configuration class (user input)
  * @author DevilBoy
@@ -22,14 +24,16 @@ public class Configuration implements java.io.Serializable {
 	boolean debug = false;
 	int alertRange = 16;
 	int monsterSpawnDistance = 24;
+	Environment worldtype = Environment.NORMAL;
 	
 	/**
 	 * Fills in the configuration based on the file.
 	 * @param file The file to open.
 	 * @throws NoSuchElementException
 	 */
-	public Configuration(File file) throws NoSuchElementException {
+	public Configuration(File file, Environment worldtype) throws NoSuchElementException {
 		this.file = file;
+		this.worldtype = worldtype;
 		//if it exists, let's read it, if it doesn't, let's create it.
 		if (file.exists()) {
 			try {

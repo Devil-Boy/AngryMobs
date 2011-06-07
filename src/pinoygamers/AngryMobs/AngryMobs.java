@@ -54,7 +54,7 @@ public class AngryMobs extends JavaPlugin {
 		
 		for( World world : worlds ) {
 			File conffile = new File(pluginMainDir + "/" + configPrefix + world.getName() + ".ini");
-			worldConfigs.put(world.getName(), new Configuration(conffile));
+			worldConfigs.put(world.getName(), new Configuration(conffile, world.getEnvironment()));
 		}
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
