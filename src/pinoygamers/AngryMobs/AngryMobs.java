@@ -46,6 +46,14 @@ public class AngryMobs extends JavaPlugin {
     public void onEnable() {
         // TODO: Place any custom enable code here including the registration of any events
 
+    	File folder = new File(pluginMainDir);
+    	if(!folder.exists()) {
+    		try {
+    			folder.mkdir();
+    		}catch (Exception e) {
+    			System.out.println("AngryMobs: Could not create directory, do you have the correct permissions?");
+    		}
+    	}
         // Register our events
         PluginManager pm = getServer().getPluginManager();
         final AngryMobsWorldListener worldL = new AngryMobsWorldListener( this );
