@@ -18,6 +18,7 @@ alertRange=16
 #	from a player.
 monsterSpawnDistance=24
 
-# 
-
-spawnableMonster=Creeper,Skeleton,Spider,Zombie
+# Spawnable Monsters
+#	Here you put a list of monsters that can be spawned in
+#	the world. (separated by commas)
+spawnableMonsters=Creeper,Skeleton,Spider,Zombie

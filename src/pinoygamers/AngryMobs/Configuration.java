@@ -26,7 +26,7 @@ public class Configuration implements java.io.Serializable {
 	int alertRange = 16;
 	int monsterSpawnDistance = 24;
 	Environment worldtype = Environment.NORMAL;
-	LinkedList spawnableMonsters; 
+	LinkedList<String> spawnableMonsters; 
 	
 	/**
 	 * Fills in the configuration based on the file.
@@ -37,9 +37,9 @@ public class Configuration implements java.io.Serializable {
 		this.file = file;
 		this.worldtype = worldtype;
 		if (worldtype == World.Environment.NORMAL) {
-			spawnableMonsters = (LinkedList) Arrays.asList("Creeper,Skeleton,Spider,Zombie".split(","));
+			spawnableMonsters = (LinkedList<String>) Arrays.asList("Creeper,Skeleton,Spider,Zombie".split(","));
 		} else if (worldtype == World.Environment.NETHER) {
-			spawnableMonsters = (LinkedList) Arrays.asList("PigZombie,Ghast".split(","));
+			spawnableMonsters = (LinkedList<String>) Arrays.asList("PigZombie,Ghast".split(","));
 		}
 		
 		
@@ -205,9 +205,9 @@ public class Configuration implements java.io.Serializable {
     public void createConfig() {
     	try{
     		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-    		out.write("#\r\n");
     		out.write("# AngryMobs Configuration\r\n");
     		out.write("#\r\n");
+    		out.write("# Each file only affects the world named in th filename.\r\n");
     		out.write("\r\n");
     		out.write("# Debug Messages\r\n");
     		out.write("#	This can activate debug output messages for if you\r\n");
@@ -224,6 +224,11 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	The minimum distance (in blocks) that a monster can spawn\r\n");
     		out.write("#	from a player.\r\n");
     		out.write("monsterSpawnDistance=" + monsterSpawnDistance + "\r\n");
+    		out.write("\r\n");
+    		out.write("# Spawnable Monsters\r\n");
+    		out.write("#	Here you put a list of monsters that can be spawned in\r\n");
+    		out.write("#	the world. (separated by commas)\r\n");
+    		out.write("spawnableMonsters=" + linkedListToString(spawnableMonsters) + "\r\n");
     		out.close();
     	} catch (Exception e) {
     		System.out.println("Couldn't generate the config! Are you sure you have permissions to write in this folder?");
