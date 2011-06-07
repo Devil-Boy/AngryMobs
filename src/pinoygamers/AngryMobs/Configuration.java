@@ -27,6 +27,10 @@ public class Configuration implements java.io.Serializable {
 	int monsterSpawnDistance = 24;
 	Environment worldtype = Environment.NORMAL;
 	LinkedList<String> spawnableMonsters; 
+	/**
+	 * The frequency to spawn monsters in milliseconds.
+	 */
+	int monsterSpawnFrequency = 10000;
 	
 	/**
 	 * Fills in the configuration based on the file.
@@ -53,6 +57,12 @@ public class Configuration implements java.io.Serializable {
 		        debug = getBoolean("debug", false);
 		        alertRange = getInt("alertRange", 16);
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
+		        monsterSpawnFrequency = getInt("monsterSpawnFrequency", 10) *1000;
+				if (worldtype == World.Environment.NORMAL) {
+					spawnableMonsters = (LinkedList<String>) Arrays.asList(getString("spawnableMonsters").split(","));
+				} else if (worldtype == World.Environment.NETHER) {
+					spawnableMonsters = (LinkedList<String>) Arrays.asList(getString("spawnableMonsters").split(","));
+				}
 			}catch (Exception ex) {
 		    	
 		    }
@@ -224,6 +234,10 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	The minimum distance (in blocks) that a monster can spawn\r\n");
     		out.write("#	from a player.\r\n");
     		out.write("monsterSpawnDistance=" + monsterSpawnDistance + "\r\n");
+    		out.write("\r\n");
+    		out.write("# Monster Spawn Timing\r\n");
+    		out.write("#	How many seconds to wait between each monster spawn.\r\n");
+    		out.write("monsterSpawnFrequency=" + monsterSpawnFrequency/1000 + "\r\n");
     		out.write("\r\n");
     		out.write("# Spawnable Monsters\r\n");
     		out.write("#	Here you put a list of monsters that can be spawned in\r\n");

@@ -24,9 +24,16 @@ public class AngryMobsWorldListener extends WorldListener {
 			plugin.spawnerThreads.remove(event.getWorld().getName());
 		}
 		AngryMobsMobSpawner ms = new AngryMobsMobSpawner(plugin, plugin.worldConfigs.get(event.getWorld().getName()), event.getWorld());
+		ms.setWaitTime(plugin.worldConfigs.get(event.getWorld().getName()).monsterSpawnFrequency);
 		Thread dispatchThread = new Thread(ms);
         dispatchThread.start();
         plugin.spawnerThreads.put(event.getWorld().getName(), ms);
 	}
+	
+	/* Waiting for the RB of bukkit to include this event.
+	public void onWorldUnload(WorldUnloadEvent event) {
+		
+	}
+	*/
 
 }
