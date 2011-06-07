@@ -239,9 +239,9 @@ public class Functions {
      * @param ctype1 The type of mob you want to change
      * @param ctype2 The type of mob you want to change to
      */
-    public static void changeAllNearbyMobs(Player player, CreatureType ctype1, CreatureType ctype2) {
+    public static void changeAllNearbyMobs(Player player, CreatureType ctype1, CreatureType ctype2, int range) {
     	
-    	Entity[] ents = (Entity[]) player.getNearbyEntities(16, 16, 16).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
+    	Entity[] ents = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
     	
     	for (int i = 0; i < ents.length; i++) {
 			if(isCreatureType(ents[i], ctype1)) {

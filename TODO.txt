@@ -13,5 +13,5 @@ Make a function alertNearbyMonsters(Player player) [Done]
 Tux can use: Functions.alertNearbyMobs()
 
 <Nat's TODO list>
-add changeAllNearbyMobs
-add changeAllMobs
+add changeAllNearbyMobs [Done]
+add changeAllMobs [Done]
