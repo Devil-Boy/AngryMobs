@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.Flying;
 
 public class AngryMobsMobSpawner implements Runnable {
 
@@ -43,13 +44,14 @@ public class AngryMobsMobSpawner implements Runnable {
 			if(world.getLoadedChunks().length > 0 && 
 					(Functions.isNight(world.getTime()) 
 							|| world.getEnvironment() == Environment.NETHER)) {
-				while(!blockfound || tries < 5) {
-					Block theblock = Functions.randomBlock(world);
-					if(Functions.safeSpawn(theblock) && Functions.isLowerThanLightLevel(theblock, 7)) {
-						CreatureType ct = CreatureType.fromName(
-								Functions.properMonsterCase(config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim()));
-						world.spawnCreature(theblock.getLocation(), ct);
-					}
+				CreatureType ct = CreatureType.fromName(
+					Functions.properMonsterCase(config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim()));
+				if(ct == CreatureType.GHAST) {
+					Block theblock = Functions.randomAirBlock(world, plugin.getServer(), config.monsterSpawnDistance);
+					world.spawnCreature(theblock.getLocation(), ct);
+				}else {
+					Block theblock = Functions.randomGroundBlock(world, plugin.getServer(), config.monsterSpawnDistance);
+					world.spawnCreature(theblock.getLocation(), ct);
 				}
 			}
 		}
