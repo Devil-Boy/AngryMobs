@@ -7,6 +7,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Creature;
@@ -93,6 +94,19 @@ public class Functions {
     public static String capitalCase(String s)
     {
         return s.toUpperCase().charAt(0) + s.toLowerCase().substring(1);
+    }
+    
+    /**
+     * Get the proper captialization of any monster type.
+     * @param type Monster type
+     * @return correct capitalization
+     */
+    public static String properMonsterCase(String type) {
+		if (type.equalsIgnoreCase("PigZombie")) {
+    		return "PigZombie";
+    	}else {
+    		return capitalCase(type);
+    	}
     }
     
     /**
