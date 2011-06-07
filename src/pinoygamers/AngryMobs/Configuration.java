@@ -41,9 +41,9 @@ public class Configuration implements java.io.Serializable {
 		this.file = file;
 		this.worldtype = worldtype;
 		if (worldtype == World.Environment.NORMAL) {
-			spawnableMonsters = (LinkedList<String>) Arrays.asList("Creeper,Skeleton,Spider,Zombie".split(","));
+			spawnableMonsters = new LinkedList<String>(Arrays.asList("Creeper,Skeleton,Spider,Zombie".split(",")));
 		} else if (worldtype == World.Environment.NETHER) {
-			spawnableMonsters = (LinkedList<String>) Arrays.asList("PigZombie,Ghast".split(","));
+			spawnableMonsters = new LinkedList<String>(Arrays.asList("PigZombie,Ghast".split(",")));
 		}
 		
 		
@@ -59,9 +59,9 @@ public class Configuration implements java.io.Serializable {
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
 		        monsterSpawnFrequency = getInt("monsterSpawnFrequency", 10) *1000;
 				if (worldtype == World.Environment.NORMAL) {
-					spawnableMonsters = (LinkedList<String>) Arrays.asList(getString("spawnableMonsters").split(","));
+					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
 				} else if (worldtype == World.Environment.NETHER) {
-					spawnableMonsters = (LinkedList<String>) Arrays.asList(getString("spawnableMonsters").split(","));
+					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
 				}
 			}catch (Exception ex) {
 		    	
