@@ -305,4 +305,14 @@ public class Functions {
     	return time > 12000;
     }
 
+    /**
+     * Checks to see if the light level of a block is below a certain number
+     * @param theBlock The block we are checking
+     * @param lightLevel The maximum light level
+     * @return
+     */
+    public static boolean isLowerThanLightLevel(Block theBlock, int lightLevel) {
+    	return lightLevel > theBlock.getLightLevel();
+    }
+
 }
