@@ -236,34 +236,29 @@ public class Functions {
     /**
      * Changes all the mobs in the player's area from one type to another
      * @param player The unlucky individual
-     * @param ctype1 The type of mob you want to change
-     * @param ctype2 The type of mob you want to change to
+     * @param ctype Type you want all the mobs to change to.
      */
-    public static void changeAllNearbyMobs(Player player, CreatureType ctype1, CreatureType ctype2, int range) {
+    public static void changeAllNearbyMobs(Player player, CreatureType ctype, int range) {
     	
     	Entity[] ents = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
     	
     	for (int i = 0; i < ents.length; i++) {
-			if(isCreatureType(ents[i], ctype1)) {
-				changeMob(ents[i], ctype1.getName());
-			}
+    		changeMob(ents[i], ctype.getName());
 		}
-    }
+	}
     
     /**
      * Changes all the mobs in a world from one type to another
      * @param w The world
-     * @param player The unlucky individual
-     * @param ctype1 The type of mob you want to change
-     * @param ctype2 The type of mob you want to change to
+     * @param ctype Type you want all the mobs to change to
      */
-    public static void changeAllMobs(World w, Player player, CreatureType ctype1, CreatureType ctype2) {
+    public static void changeAllMobs(World w, CreatureType ctype) {
     	
     	Entity[] ents = (Entity[]) w.getEntities().toArray();
     	
     	for (int i = 0; i < ents.length; i++) {
-			if(isCreatureType(ents[i], ctype1)) {
-				changeMob(ents[i], ctype1.getName());
+			if(isCreatureType(ents[i], ctype)) {
+				changeMob(ents[i], ctype.getName());
 			}
 		}
     }
