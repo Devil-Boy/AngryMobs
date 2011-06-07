@@ -1,6 +1,6 @@
-#
 # AngryMobs Configuration
 #
+# Each file only affects the world named in th filename.
 
 # Debug Messages
 #	This can activate debug output messages for if you
@@ -17,3 +17,7 @@ alertRange=16
 #	The minimum distance (in blocks) that a monster can spawn
 #	from a player.
 monsterSpawnDistance=24
+
+# 
+
+spawnableMonster=Creeper,Skeleton,Spider,Zombie
