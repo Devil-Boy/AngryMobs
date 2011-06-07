@@ -345,5 +345,13 @@ public class Functions {
     public static boolean isLowerThanLightLevel(Block theBlock, int lightLevel) {
     	return lightLevel > theBlock.getLightLevel();
     }
+    
+    public static Block spawnElevation() {
+    	return null;
+    }
+    
+    public static Block randomSpawn() {
+    	return null;
+    }
 
 }
