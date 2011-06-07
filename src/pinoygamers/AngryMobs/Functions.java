@@ -156,7 +156,7 @@ public class Functions {
      */
     public static Location randomGroundLocation(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock() && !isOnGround(l.getBlock().getFace(BlockFace.DOWN)))){
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
     		l = randomLocation(randomChunk(w));
     	}
     	return l;
@@ -205,7 +205,7 @@ public class Functions {
      */
     public static Block randomGroundBlock(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance)){
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
     		l = randomLocation(randomChunk(w));
     	}
     	return l.getBlock();
@@ -218,7 +218,7 @@ public class Functions {
      */
     public static Block randomAirBlock(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock() && )){
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isAir(l.getBlock())){
     		l = randomLocation(randomChunk(w));
     	}
     	return l.getBlock();
@@ -226,33 +226,14 @@ public class Functions {
     
     /**
      * Returns a random block, above ground, from a given chunk.
-     * OBS, this isn't really used in the randomGroundBlock master function.
-     * Could be useful elsewhere though.
      * @param c The chunk
      * @return
      */
-    public static Block randomGroundBlock(Chunk c){
+    public static Block randomBlock(Chunk c){
     	java.util.Random generator = new java.util.Random();
     	int randX = generator.nextInt(16);
     	int randZ = generator.nextInt(16);
-    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
-    	
-    	return c.getBlock(randX, Y, randZ);
-    }
-    
-    /**
-     * Returns a random aerial block from a given chunk.
-     * * OBS, this isn't really used in the randomAirBlock master function.
-     * Could be useful elsewhere though.
-     * @param c The chunk
-     * @return
-     */
-    public static Block randomAirBlock(Chunk c){
-    	java.util.Random generator = new java.util.Random();
-    	int randX = generator.nextInt(16);
-    	int randZ = generator.nextInt(16);
-    	int highestGround = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
-    	int randY = generator.nextInt(highestGround + (128-highestGround)*generator.nextInt()); // Air block between ground and y=128
+    	int randY = generator.nextInt(128);
     	
     	return c.getBlock(randX, randY, randZ);
     }
