@@ -5,8 +5,15 @@ import org.bukkit.World;
 import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
+
 import java.lang.Math;
+import java.util.List;
 
 /**
  * All functions that will be used in more than one class should be put
@@ -134,6 +141,15 @@ public class Functions {
     	int randY = generator.nextInt(128);
     	
     	return c.getBlock(randX, randY, randZ);
+    }
+    
+    public void alertNearbyMonsters(Player player) {
+    	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(16, 16, 16).toArray(); // Radius will be configurable later on
+    	for (int i=0; i<theCrowd.length; i++) {
+			if (theCrowd[i] instanceof Monster) {
+    			((Creature) theCrowd[i]).setTarget(player);
+			}
+    	}
     }
 
 }
