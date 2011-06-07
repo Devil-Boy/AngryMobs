@@ -84,6 +84,12 @@ public class Configuration implements java.io.Serializable {
         return set;
     }
     
+    /**
+	 * Obtains a list from the properties file.
+	 * @param label A string containing the name of the key that contains the value you want from the properties file.
+	 * @param thedefault The default value to use, just incase the label does not exist.
+	 * @return A LinkedList of the property values that were separated by commas.
+	 */
     public LinkedList<String> getList(String label, String thedefault) {
     	String values;
         try {
@@ -106,6 +112,12 @@ public class Configuration implements java.io.Serializable {
         }
     }
     
+    /**
+	 * Obtains a string value from the properties file.
+	 * @param label A string containing the name of the key that contains the value you want from the properties file.
+	 * @return A string with value you wanted.
+	 * @throws NoSuchElementException If the config file does not contain the label.
+	 */
     public String getString(String label) throws NoSuchElementException {
         String value = properties.getProperty(label);
         if (value == null) {
@@ -164,7 +176,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("monsterSpawnDistance=" + monsterSpawnDistance + "\r\n");
     		out.close();
     	} catch (Exception e) {
-    		System.out.println("Couldn't generate the config! Are you sure you have permissions to write in this folder?");
+    		// Not sure what to do? O.o
     	}
     }
     
