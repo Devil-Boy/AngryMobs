@@ -23,6 +23,11 @@ public class Configuration implements java.io.Serializable {
 	int alertRange = 16;
 	int monsterSpawnDistance = 24;
 	
+	/**
+	 * Fills in the configuration based on the file.
+	 * @param file The file to open.
+	 * @throws NoSuchElementException
+	 */
 	public Configuration(File file) throws NoSuchElementException {
 		this.file = file;
 		//if it exists, let's read it, if it doesn't, let's create it.
