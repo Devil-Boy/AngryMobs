@@ -6,6 +6,7 @@ Sal Code random location finding algorithm
 Implement config file
 create thread that spawns the monsters
 Nat - add change monster command [Done]
+Makes mobs spawn on the ground.
 
 <Devil's TODO list>
 Import and integrate Configuration class [Done]

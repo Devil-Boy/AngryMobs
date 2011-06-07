@@ -171,7 +171,7 @@ public class Functions {
     	java.util.Random generator = new java.util.Random();
     	int randX = c.getX() + generator.nextInt(16);
     	int randZ = c.getZ() + generator.nextInt(16);
-    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ);
+    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
     	
     	return new Location(c.getWorld(), randX, Y, randZ);
     }
@@ -203,9 +203,9 @@ public class Functions {
     	java.util.Random generator = new java.util.Random();
     	int randX = generator.nextInt(16);
     	int randZ = generator.nextInt(16);
-    	int randY = generator.nextInt(128);
+    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
     	
-    	return c.getBlock(randX, randY, randZ);
+    	return c.getBlock(randX, Y, randZ);
     }
     
     /**
