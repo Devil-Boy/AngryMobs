@@ -8,9 +8,8 @@ create thread that spawns the monsters
 Nat - add change monster command [Done]
 
 <Devil's TODO list>
-Import and integrate Configuration class [Done, need to test for errors]
-Make a function alertNearbyMonsters(Player player)
-Make a function alertNearbyMonsters(Player player) [Structured, but noy yet configurable]
+Import and integrate Configuration class [Done]
+Make a function alertNearbyMonsters(Player player) [Done]
 Tux can use: Functions.alertNearbyMobs()
 
 <Nat's TODO list>
