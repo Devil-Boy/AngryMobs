@@ -395,6 +395,24 @@ public class Functions {
     	return lightLevel > theBlock.getLightLevel();
     }
     
+    /**
+     * Checks to see if the air block is right above a regular block
+     * @param block Block we're checking
+     * @return True if the block is right above the ground, false if not.
+     */
+    public static boolean isOnGround(Block block) {
+    	if(isAir(block)){
+        	if(isAir(block.getFace(BlockFace.DOWN))) {
+        		return false;
+        	} else {
+        		return true;
+        	}
+    	} else {
+    		return false;
+    	}
+
+    }
+    
     public static Block spawnElevation() {
     	return null;
     }
