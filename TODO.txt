@@ -5,7 +5,7 @@ Want to do something on the list? Put your name next to it.
 Sal Code random location finding algorithm
 Implement config file
 create thread that spawns the monsters
-add change monster command
+Nat - add change monster command
 
 <Devil's TODO list>
 Import and integrate Configuration class [Done, need to test for errors]

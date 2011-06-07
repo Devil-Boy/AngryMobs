@@ -6,9 +6,13 @@ import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 
 import java.lang.Math;
+import java.util.List;
 
 /**
  * All functions that will be used in more than one class should be put
@@ -140,6 +144,23 @@ public class Functions {
     
     public void alertNearbyMonsters(Player player) {
     	// Need to config thing first
+    }
+    
+    /**
+     * Changes one monster type to another
+     * @param w The world
+     * @return Returns true if it changed, false if it didn't
+     */
+    public static boolean changeMob(World w, LivingEntity m1, LivingEntity m2) {
+    	Object[] ents = w.getLivingEntities().toArray();
+    	
+    	for (int i = 0; i < ents.length; i++) {
+			if(ents[i] instanceof Monster) {
+				
+			}
+		}
+		return false;
+    	
     }
 
 }
