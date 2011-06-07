@@ -35,7 +35,7 @@ public class AngryMobsMobSpawner implements Runnable {
 			}
 			boolean blockfound = false;
 			int tries = 0;
-			if(world.getLoadedChunks().length > 0) {
+			if(world.getLoadedChunks().length > 0 && Functions.isNight(world.getTime())) {
 				while(!blockfound || tries < 5) {
 					Block theblock = Functions.randomBlock(world);
 					if(Functions.safeSpawn(theblock)) {

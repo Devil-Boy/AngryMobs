@@ -300,5 +300,9 @@ public class Functions {
     		return false;
     	}
     }
+    
+    public static boolean isNight(long time) {
+    	return time > 12000;
+    }
 
 }
