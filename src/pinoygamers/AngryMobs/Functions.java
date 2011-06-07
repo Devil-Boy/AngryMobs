@@ -258,6 +258,11 @@ public class Functions {
 		return false;
     }
     
+    /**
+     * Returns whether or not a spot is big enough for a monster to spawn on.
+     * @param theBlock The block which you're checking is safe or not.
+     * @return True if the spawn isn't blocked.
+     */
     public static Boolean safeSpawn(Block theBlock) {
     	Boolean isSafe = true;
 		if (isAir(theBlock.getFace(BlockFace.NORTH))) {
@@ -283,6 +288,11 @@ public class Functions {
 		return isSafe;
 	}
     
+    /**
+     * Checks if the block is air.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of air.
+     */
     public static boolean isAir(Block theBlock) {
     	if (theBlock.getType() == Material.AIR) {
     		return true;
