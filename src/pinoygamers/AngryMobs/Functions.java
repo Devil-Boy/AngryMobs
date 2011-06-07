@@ -150,14 +150,27 @@ public class Functions {
     }
     
     /**
-     * Returns a random location from a given world.
+     * Returns a random location, on the ground, from a given world.
      * @param w the world
      * @return
      */
-    public static Location randomLocation(World w, Server s, int minDistance){
-    	Location l = randomLocation(randomChunk(w), s);
-    	while(playersInProximity(s, l, minDistance)){
-    		l = randomLocation(randomChunk(w), s);
+    public static Location randomGroundLocation(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w));
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock() && !isOnGround(l.getBlock().getFace(BlockFace.DOWN)))){
+    		l = randomLocation(randomChunk(w));
+    	}
+    	return l;
+    }
+    
+    /**
+     * Returns a random aerial location from a given world.
+     * @param w the world
+     * @return
+     */
+    public static Location randomAirLocation(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w));
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isAir(l.getBlock())){
+    		l = randomLocation(randomChunk(w));
     	}
     	return l;
     }
@@ -167,18 +180,18 @@ public class Functions {
      * @param c The chunk
      * @return
      */
-    public static Location randomLocation(Chunk c, Server s){
+    public static Location randomLocation(Chunk c){
     	java.util.Random generator = new java.util.Random();
-    	int randX = c.getX() + generator.nextInt(16);
-    	int randZ = c.getZ() + generator.nextInt(16);
-    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
+    	double randX = c.getX() + 16 * generator.nextDouble();
+    	double randZ = c.getZ() + 16 * generator.nextDouble();
+    	double randY = 128 * generator.nextDouble();
     	
-    	return new Location(c.getWorld(), randX, Y, randZ);
+    	return new Location(c.getWorld(), randX, randY, randZ);
     }
     
-    public static boolean playersInProximity(Server s, Location l, int range){
+    public static boolean playersInProximity(Server s, Location l, int minDistance){
     	for(Player p : s.getOnlinePlayers()){
-    		if(distance(l, p.getLocation())<range){
+    		if(distance(l, p.getLocation())<minDistance){
     			return true;
     		}
     	}
@@ -190,22 +203,58 @@ public class Functions {
      * @param w the world
      * @return
      */
-    public static Block randomBlock(World w){
-    	return randomBlock(randomChunk(w));
+    public static Block randomGroundBlock(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w));
+    	while(playersInProximity(s, l, minDistance)){
+    		l = randomLocation(randomChunk(w));
+    	}
+    	return l.getBlock();
     }
     
     /**
-     * Returns a random block from a given chunk.
+     * Returns a random aerial block from a given world.
+     * @param w the world
+     * @return
+     */
+    public static Block randomAirBlock(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w));
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock() && )){
+    		l = randomLocation(randomChunk(w));
+    	}
+    	return l.getBlock();
+    }
+    
+    /**
+     * Returns a random block, above ground, from a given chunk.
+     * OBS, this isn't really used in the randomGroundBlock master function.
+     * Could be useful elsewhere though.
      * @param c The chunk
      * @return
      */
-    public static Block randomBlock(Chunk c){
+    public static Block randomGroundBlock(Chunk c){
     	java.util.Random generator = new java.util.Random();
     	int randX = generator.nextInt(16);
     	int randZ = generator.nextInt(16);
     	int Y = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
     	
     	return c.getBlock(randX, Y, randZ);
+    }
+    
+    /**
+     * Returns a random aerial block from a given chunk.
+     * * OBS, this isn't really used in the randomAirBlock master function.
+     * Could be useful elsewhere though.
+     * @param c The chunk
+     * @return
+     */
+    public static Block randomAirBlock(Chunk c){
+    	java.util.Random generator = new java.util.Random();
+    	int randX = generator.nextInt(16);
+    	int randZ = generator.nextInt(16);
+    	int highestGround = c.getWorld().getHighestBlockYAt(randX, randZ)+1;
+    	int randY = generator.nextInt(highestGround + (128-highestGround)*generator.nextInt()); // Air block between ground and y=128
+    	
+    	return c.getBlock(randX, randY, randZ);
     }
     
     /**
