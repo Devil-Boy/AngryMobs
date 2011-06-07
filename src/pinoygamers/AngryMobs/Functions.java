@@ -5,12 +5,26 @@ import org.bukkit.World;
 import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Chicken;
+import org.bukkit.entity.Cow;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Ghast;
+import org.bukkit.entity.Giant;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.Pig;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Sheep;
+import org.bukkit.entity.Slime;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Squid;
+import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Zombie;
+
+import com.sun.tools.corba.se.idl.toJavaPortable.Skeleton;
 
 import java.lang.Math;
 import java.util.List;
@@ -158,13 +172,74 @@ public class Functions {
     
     /**
      * Changes the type of a certain monster
-     * @param le1 The mob we want to change
+     * @param e1 The mob we want to change
      * @param mtype What are we going to change it to
      */
-    public static void changeMob(LivingEntity le1, String mtype) {
-    	Location location = le1.getLocation();
-    	le1.remove();
+    public static void changeMob(Entity e1, String mtype) {
+    	Location location = e1.getLocation();
+    	e1.remove();
     	SpawnMob(location, mtype);
+    }
+    
+    /**
+     * Changes all the mobs in the player's area from one type to another
+     * @param player The unlucky individual
+     * @param ctype1 The type of mob you want to change
+     * @param ctype2 The type of mob you want to change to
+     */
+    public static void changeAllNearbyMobs(Player player, CreatureType ctype1, CreatureType ctype2) {
+    	
+    	Entity[] ents = (Entity[]) player.getNearbyEntities(16, 16, 16).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
+    	
+    	for (int i = 0; i < ents.length; i++) {
+			if(isCreatureType(ents[i], ctype1)) {
+				changeMob(ents[i], ctype1.getName());
+			}
+		}
+    }
+    
+    /**
+     * Changes all the mobs in a world from one type to another
+     * @param w The world
+     * @param player The unlucky individual
+     * @param ctype1 The type of mob you want to change
+     * @param ctype2 The type of mob you want to change to
+     */
+    public static void changeAllMobs(World w, Player player, CreatureType ctype1, CreatureType ctype2) {
+    	
+    	Entity[] ents = (Entity[]) w.getEntities().toArray();
+    	
+    	for (int i = 0; i < ents.length; i++) {
+			if(isCreatureType(ents[i], ctype1)) {
+				changeMob(ents[i], ctype1.getName());
+			}
+		}
+    }
+    
+    /**
+     * To determine if an Entity is of a certain Creature type DOES NOT WORK WITH PLAYERS ONLY CREATURES 
+     * @param e The entity we want to determine
+     * @param c The creature type we want to compare
+     * @return True if the entity is of the creature type, false if not
+     */
+    public static boolean isCreatureType(Entity e, CreatureType c) {
+    	switch(c) {
+    		case CHICKEN: return(e instanceof Chicken);
+    		case COW: return(e instanceof Cow);
+    		case GHAST: return(e instanceof Ghast);
+    		case GIANT: return(e instanceof Giant);
+    		case MONSTER: return(e instanceof Monster);
+    		case PIG: return(e instanceof Pig);
+    		case PIG_ZOMBIE: return(e instanceof PigZombie);
+    		case SHEEP: return(e instanceof Sheep);
+    		case SKELETON: return(e instanceof Skeleton);
+    		case SLIME: return(e instanceof Slime);
+    		case SPIDER: return(e instanceof Spider);
+    		case SQUID: return(e instanceof Squid);
+    		case WOLF: return(e instanceof Wolf);
+    		case ZOMBIE: return(e instanceof Zombie);
+    	}
+		return false;
     }
 
 }
