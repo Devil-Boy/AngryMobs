@@ -1,6 +1,7 @@
 package pinoygamers.AngryMobs;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class AngryMobs extends JavaPlugin {
     String configPrefix = "world-";
     public boolean debug = false;
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
+    public HashMap<String, AngryMobsMobSpawner> spawnerThreads = new HashMap<String, AngryMobsMobSpawner>();
 
     public AngryMobs() {
         super(); // We have no idea what this does, but we have it here anyways.
@@ -52,9 +54,15 @@ public class AngryMobs extends JavaPlugin {
        
         List<World> worlds = getServer().getWorlds();
 		
+        spawnerThreads.clear();
+        
 		for( World world : worlds ) {
 			File conffile = new File(pluginMainDir + "/" + configPrefix + world.getName() + ".ini");
 			worldConfigs.put(world.getName(), new Configuration(conffile, world.getEnvironment()));
+			AngryMobsMobSpawner ms = new AngryMobsMobSpawner(this, worldConfigs.get(world.getName()), world);
+			Thread dispatchThread = new Thread(ms);
+            dispatchThread.start();
+            spawnerThreads.put(world.getName(), ms);
 		}
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
@@ -62,7 +70,12 @@ public class AngryMobs extends JavaPlugin {
         System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
     }
     public void onDisable() {
-        // TODO: Place any custom disable code here
+    	//Let's clear all the mob spawning threads.
+    	Collection<AngryMobsMobSpawner> stcollect = spawnerThreads.values();
+    	for(AngryMobsMobSpawner am : stcollect) {
+    		am.stopIt();
+    	}
+    	spawnerThreads.clear();
 
         // NOTE: All registered events are automatically unregistered when a plugin is disabled
 
