@@ -17,7 +17,7 @@ public class AngryMobsWorldListener extends WorldListener {
 	public void onWorldLoad( WorldLoadEvent event )
 	{
 		File conffile = new File(plugin.pluginMainDir + "/" + plugin.configPrefix + event.getWorld().getName() + ".ini");
-		plugin.worldConfigs.put(event.getWorld().getName(), new Configuration(conffile));
+		plugin.worldConfigs.put(event.getWorld().getName(), new Configuration(conffile, event.getWorld().getEnvironment()));
 	}
 
 }
