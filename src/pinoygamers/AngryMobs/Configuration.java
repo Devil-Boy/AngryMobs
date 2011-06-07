@@ -66,6 +66,8 @@ public class Configuration implements java.io.Serializable {
 			}catch (Exception ex) {
 		    	
 		    }
+		}else {
+			createConfig();
 		}
     }
 	
