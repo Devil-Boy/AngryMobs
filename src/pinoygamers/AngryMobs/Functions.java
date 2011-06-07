@@ -261,9 +261,11 @@ public class Functions {
 		if (isAir(theBlock.getFace(BlockFace.UP))) {
 			isSafe = false;
 		}
+		/*
 		if (isAir(theBlock.getFace(BlockFace.DOWN))) {
 			isSafe = false;
 		}
+		*/
 		return isSafe;
 	}
     
