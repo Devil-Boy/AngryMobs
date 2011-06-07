@@ -153,20 +153,15 @@ public class Functions {
     }
     
     /**
-     * Changes one monster type to another
-     * @param w The world
-     * @return Returns true if it changed, false if it didn't
+     * Changes the type of a certain monster
+     * @param m1 The mob we want to change
+     * @param mtype What are we going to change it to
+     * @return
      */
-    public static boolean changeMob(World w, LivingEntity m1, LivingEntity m2) {
-    	Object[] ents = w.getLivingEntities().toArray();
-    	
-    	for (int i = 0; i < ents.length; i++) {
-			if(ents[i] instanceof Monster) {
-				
-			}
-		}
-		return false;
-    	
+    public static void changeMob(LivingEntity le1, String mtype) {
+    	Location location = le1.getLocation();
+    	le1.setHealth(0);
+    	SpawnMob(location, mtype);
     }
 
 }
