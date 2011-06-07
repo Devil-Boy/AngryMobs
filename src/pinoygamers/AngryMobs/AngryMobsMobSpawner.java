@@ -1,7 +1,11 @@
 package pinoygamers.AngryMobs;
 
+import java.util.Random;
+
 import org.bukkit.World;
+import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
+import org.bukkit.entity.CreatureType;
 
 public class AngryMobsMobSpawner implements Runnable {
 
@@ -10,6 +14,7 @@ public class AngryMobsMobSpawner implements Runnable {
 	int waittime = 10000;
 	Configuration config;
 	World world;
+	Random rand = new Random();
 	
 	public AngryMobsMobSpawner(AngryMobs plugin, Configuration config, World world) {
 		this.plugin = plugin;
@@ -35,11 +40,15 @@ public class AngryMobsMobSpawner implements Runnable {
 			}
 			boolean blockfound = false;
 			int tries = 0;
-			if(world.getLoadedChunks().length > 0 && Functions.isNight(world.getTime())) {
+			if(world.getLoadedChunks().length > 0 && 
+					(Functions.isNight(world.getTime()) 
+							|| world.getEnvironment() == Environment.NETHER)) {
 				while(!blockfound || tries < 5) {
 					Block theblock = Functions.randomBlock(world);
-					if(Functions.safeSpawn(theblock)) {
-						
+					if(Functions.safeSpawn(theblock) && Functions.isLowerThanLightLevel(theblock, 7)) {
+						CreatureType ct = CreatureType.fromName(
+								Functions.properMonsterCase(((String)config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size()))).trim()));
+						world.spawnCreature(theblock.getLocation(), ct);
 					}
 				}
 			}
