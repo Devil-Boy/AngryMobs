@@ -3,6 +3,7 @@ package pinoygamers.AngryMobs;
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.*;
@@ -13,8 +14,8 @@ import java.util.*;
  */
 
 public class Configuration implements java.io.Serializable {
-	private Properties properties;
-	private final AngryMobs plugin;
+	private File file;
+	Properties p;
 	public boolean upToDate = true;
 	
 	// List of Config Options
@@ -22,30 +23,60 @@ public class Configuration implements java.io.Serializable {
 	int alertRange = 16;
 	int monsterSpawnDistance = 24;
 	
-	public Configuration(Properties p, final AngryMobs plugin, boolean customRecipe) throws NoSuchElementException {
-        properties = p;
-        this.plugin = plugin;
-        
-        // Grab values here.
-        debug = getBoolean("debug", false);
-        alertRange = getInt("alertRange", 16);
-        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
-        
+	/**
+	 * Fills in the configuration based on the file.
+	 * @param file The file to open.
+	 * @throws NoSuchElementException
+	 */
+	public Configuration(File file) throws NoSuchElementException {
+		this.file = file;
+		//if it exists, let's read it, if it doesn't, let's create it.
+		if (file.exists()) {
+			try {
+				p = new Properties();
+				p.load(new FileInputStream(file));
+		        
+		        // Grab values here.
+		        debug = getBoolean("debug", false);
+		        alertRange = getInt("alertRange", 16);
+		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
+			}catch (Exception ex) {
+		    	
+		    }
+		}
     }
 	
+	/**
+	 * Returns the int value of a variable.
+	 * 
+	 * @param label The variable name
+	 * @param thedefault The default value to return if the variable isn't an int.
+	 * @return
+	 */
 	public int getInt(String label, int thedefault) {
-		String value;
         try {
-        	value = getString(label);
+        	String value = getString(label);
         	return Integer.parseInt(value);
         }catch (NoSuchElementException e) {
         	return thedefault;
         }
     }
     
-    public double getDouble(String label) throws NoSuchElementException {
-        String value = getString(label);
-        return Double.parseDouble(value);
+	/**
+	 * Returns the double value of a variable.
+	 * 
+	 * @param label The variable name
+	 * @param thedefault The default value to return if the variable isn't an int.
+	 * @return
+	 * @throws NoSuchElementException
+	 */
+    public double getDouble(String label, double thedefault) throws NoSuchElementException {
+        try {
+            String value = getString(label);
+            return Double.parseDouble(value);
+        }catch (NoSuchElementException e) {
+        	return thedefault;
+        }
     }
     
     public File getFile(String label) throws NoSuchElementException {
@@ -53,6 +84,12 @@ public class Configuration implements java.io.Serializable {
         return new File(value);
     }
 
+    /**
+     * Returns the boolean value of the variable
+     * @param label The variable name
+     * @param thedefault Default value to return if an error occurs.
+     * @return
+     */
     public boolean getBoolean(String label, boolean thedefault) {
     	String values;
         try {
@@ -96,10 +133,10 @@ public class Configuration implements java.io.Serializable {
         	values = getString(label);
         }catch (NoSuchElementException e) {
         	values = thedefault;
-        }
+        }/*
         if(plugin.debug) {
         	System.out.println("List from file: " + values);
-        }
+        }*/
         if(!values.equals("")) {
             String[] tokens = values.split(",");
             LinkedList<String> set = new LinkedList<String>();
@@ -119,7 +156,7 @@ public class Configuration implements java.io.Serializable {
 	 * @throws NoSuchElementException If the config file does not contain the label.
 	 */
     public String getString(String label) throws NoSuchElementException {
-        String value = properties.getProperty(label);
+        String value = p.getProperty(label);
         if (value == null) {
         	upToDate = false;
             throw new NoSuchElementException("Config did not contain: " + label);
@@ -154,7 +191,7 @@ public class Configuration implements java.io.Serializable {
 	 */
     public void createConfig() {
     	try{
-    		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(plugin.pluginConfigLocation)));
+    		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
     		out.write("#\r\n");
     		out.write("# AngryMobs Configuration\r\n");
     		out.write("#\r\n");
@@ -162,7 +199,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("# Debug Messages\r\n");
     		out.write("#	This can activate debug output messages for if you\r\n");
     		out.write("#	understand the source code and want to find the origin\r\n");
-    		out.write("#	of and issue.\r\n");
+    		out.write("#	of an issue.\r\n");
     		out.write("debug=" + debug + "\r\n");
     		out.write("\r\n");
     		out.write("# Monster Alert Range\r\n");
