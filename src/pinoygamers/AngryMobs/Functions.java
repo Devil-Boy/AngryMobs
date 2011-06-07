@@ -6,6 +6,8 @@ import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.Player;
+
 import java.lang.Math;
 
 /**
@@ -134,6 +136,10 @@ public class Functions {
     	int randY = generator.nextInt(128);
     	
     	return c.getBlock(randX, randY, randZ);
+    }
+    
+    public void alertNearbyMonsters(Player player) {
+    	// Need to config thing first
     }
 
 }

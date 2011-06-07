@@ -9,4 +9,4 @@ add change monster command
 
 <Devil's TODO list>
 Import and integrate Configuration class [Done, need to test for errors]
-Make a function alertNearbyMOnsters(Player player)
+Make a function alertNearbyMonsters(Player player)
