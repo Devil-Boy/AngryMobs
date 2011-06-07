@@ -176,7 +176,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("monsterSpawnDistance=" + monsterSpawnDistance + "\r\n");
     		out.close();
     	} catch (Exception e) {
-    		// Not sure what to do? O.o
+    		System.out.println("Couldn't generate the config! Are you sure you have permissions to write in this folder?");
     	}
     }
     
