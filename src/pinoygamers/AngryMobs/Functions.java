@@ -163,7 +163,7 @@ public class Functions {
      */
     public static void changeMob(LivingEntity le1, String mtype) {
     	Location location = le1.getLocation();
-    	le1.setHealth(0);
+    	le1.remove();
     	SpawnMob(location, mtype);
     }
 
