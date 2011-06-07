@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.*;
 
+import org.bukkit.World;
 import org.bukkit.World.Environment;
 
 /**
@@ -25,6 +26,7 @@ public class Configuration implements java.io.Serializable {
 	int alertRange = 16;
 	int monsterSpawnDistance = 24;
 	Environment worldtype = Environment.NORMAL;
+	LinkedList spawnableMonsters; 
 	
 	/**
 	 * Fills in the configuration based on the file.
@@ -34,6 +36,13 @@ public class Configuration implements java.io.Serializable {
 	public Configuration(File file, Environment worldtype) throws NoSuchElementException {
 		this.file = file;
 		this.worldtype = worldtype;
+		if (worldtype == World.Environment.NORMAL) {
+			spawnableMonsters = (LinkedList) Arrays.asList("Creeper,Skeleton,Spider,Zombie".split(","));
+		} else if (worldtype == World.Environment.NETHER) {
+			spawnableMonsters = (LinkedList) Arrays.asList("PigZombie,Ghast".split(","));
+		}
+		
+		
 		//if it exists, let's read it, if it doesn't, let's create it.
 		if (file.exists()) {
 			try {
