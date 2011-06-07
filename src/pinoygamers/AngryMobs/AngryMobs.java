@@ -29,7 +29,7 @@ public class AngryMobs extends JavaPlugin {
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
 
     public AngryMobs() {
-        super();
+        super(); // We have no idea what this does, but we have it here anyways.
         // TODO: Place any custom initialization code here
 
         // NOTE: Event registration should be done in onEnable not here as all events are unregistered when a plugin is disabled
