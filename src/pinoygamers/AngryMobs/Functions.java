@@ -143,6 +143,10 @@ public class Functions {
     	return c.getBlock(randX, randY, randZ);
     }
     
+    /**
+     * Makes all monsers within the configured range of a player begin to attack him.
+     * @param player The unlucky individual
+     */
     public void alertNearbyMonsters(Player player) {
     	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(16, 16, 16).toArray(); // Radius will be configurable later on
     	for (int i=0; i<theCrowd.length; i++) {
@@ -154,9 +158,8 @@ public class Functions {
     
     /**
      * Changes the type of a certain monster
-     * @param m1 The mob we want to change
+     * @param le1 The mob we want to change
      * @param mtype What are we going to change it to
-     * @return
      */
     public static void changeMob(LivingEntity le1, String mtype) {
     	Location location = le1.getLocation();
