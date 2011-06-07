@@ -2,8 +2,11 @@ package pinoygamers.AngryMobs;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.Server;
+import org.bukkit.World;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -23,8 +26,9 @@ public class AngryMobs extends JavaPlugin {
     private final AngryMobsBlockListener blockListener = new AngryMobsBlockListener(this);
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     Configuration pluginSettings;
-    String pluginMainDir = "./plugins/AngryMobs";
+    String pluginMainDir = "plugins/AngryMobs";
     String pluginConfigLocation = pluginMainDir + "/AngryMobs.cfg";
+    String configPrefix = "world-";
     public boolean debug = false;
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
 
@@ -42,7 +46,16 @@ public class AngryMobs extends JavaPlugin {
 
         // Register our events
         PluginManager pm = getServer().getPluginManager();
+        final AngryMobsWorldListener worldL = new AngryMobsWorldListener( this );
+        
+        pm.registerEvent( Event.Type.WORLD_LOAD, worldL, Event.Priority.Monitor, this );
        
+        List<World> worlds = getServer().getWorlds();
+		
+		for( World world : worlds ) {
+			File conffile = new File(pluginMainDir + "/" + configPrefix + world.getName() + ".ini");
+			worldConfigs.put(world.getName(), new Configuration(conffile));
+		}
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
         PluginDescriptionFile pdfFile = this.getDescription();
