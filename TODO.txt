@@ -11,6 +11,7 @@ Nat - add change monster command [Done]
 Import and integrate Configuration class [Done, need to test for errors]
 Make a function alertNearbyMonsters(Player player)
 Make a function alertNearbyMonsters(Player player) [Structured, but noy yet configurable]
+Tux can use: Functions.alertNearbyMobs()
 
 <Nat's TODO list>
 add changeAllNearbyMobs

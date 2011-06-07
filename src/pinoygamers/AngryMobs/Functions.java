@@ -1,10 +1,12 @@
 package pinoygamers.AngryMobs;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.Chunk;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Creature;
@@ -161,7 +163,7 @@ public class Functions {
      * @param player The unlucky individual
      * @param range The dimensions of the safety box around the player.
      */
-    public void alertNearbyMonsters(Player player, int range) {
+    public static void alertNearbyMonsters(Player player, int range) {
     	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // Radius will be configurable later on
     	for (int i=0; i<theCrowd.length; i++) {
 			if (theCrowd[i] instanceof Monster) {
@@ -240,6 +242,37 @@ public class Functions {
     		case ZOMBIE: return(e instanceof Zombie);
     	}
 		return false;
+    }
+    
+    public static Boolean safeSpawn(Block theBlock) {
+    	Boolean isSafe = true;
+		if (isAir(theBlock.getFace(BlockFace.NORTH))) {
+			isSafe = false;
+		}
+		if (isAir(theBlock.getFace(BlockFace.EAST))) {
+			isSafe = false;
+		}
+		if (isAir(theBlock.getFace(BlockFace.SOUTH))) {
+			isSafe = false;
+		}
+		if (isAir(theBlock.getFace(BlockFace.WEST))) {
+			isSafe = false;
+		}
+		if (isAir(theBlock.getFace(BlockFace.UP))) {
+			isSafe = false;
+		}
+		if (isAir(theBlock.getFace(BlockFace.DOWN))) {
+			isSafe = false;
+		}
+		return isSafe;
+	}
+    
+    public static boolean isAir(Block theBlock) {
+    	if (theBlock.getType() == Material.AIR) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
 }
