@@ -10,3 +10,4 @@ Nat - add change monster command
 <Devil's TODO list>
 Import and integrate Configuration class [Done, need to test for errors]
 Make a function alertNearbyMonsters(Player player)
+Make a function alertNearbyMonsters(Player player) [Structured, but noy yet configurable]
