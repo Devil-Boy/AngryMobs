@@ -150,6 +150,42 @@ public class Functions {
     }
     
     /**
+     * Returns a random location from a given world.
+     * @param w the world
+     * @return
+     */
+    public static Location randomLocation(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w), s);
+    	while(playersInProximity(s, l, minDistance)){
+    		l = randomLocation(randomChunk(w), s);
+    	}
+    	return l;
+    }
+    
+    /**
+     * Returns a random location from a given chunk.
+     * @param c The chunk
+     * @return
+     */
+    public static Location randomLocation(Chunk c, Server s){
+    	java.util.Random generator = new java.util.Random();
+    	int randX = c.getX() + generator.nextInt(16);
+    	int randZ = c.getZ() + generator.nextInt(16);
+    	int Y = c.getWorld().getHighestBlockYAt(randX, randZ);
+    	
+    	return new Location(c.getWorld(), randX, Y, randZ);
+    }
+    
+    public static boolean playersInProximity(Server s, Location l, int range){
+    	for(Player p : s.getOnlinePlayers()){
+    		if(distance(l, p.getLocation())<range){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    /**
      * Returns a random block from a given world.
      * @param w the world
      * @return
