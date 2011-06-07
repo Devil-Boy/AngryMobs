@@ -1,7 +1,9 @@
 package pinoygamers.AngryMobs;
 
 import org.bukkit.World;
+import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
+import org.bukkit.entity.CreatureType;
 
 public class AngryMobsMobSpawner implements Runnable {
 
@@ -35,11 +37,13 @@ public class AngryMobsMobSpawner implements Runnable {
 			}
 			boolean blockfound = false;
 			int tries = 0;
-			if(world.getLoadedChunks().length > 0 && Functions.isNight(world.getTime())) {
+			if(world.getLoadedChunks().length > 0 && 
+					(Functions.isNight(world.getTime()) 
+							|| world.getEnvironment() == Environment.NETHER)) {
 				while(!blockfound || tries < 5) {
 					Block theblock = Functions.randomBlock(world);
-					if(Functions.safeSpawn(theblock)) {
-						
+					if(Functions.safeSpawn(theblock) && Functions.isLowerThanLightLevel(theblock, 7)) {
+						world.spawnCreature(theblock.getLocation(), CreatureType.CHICKEN);
 					}
 				}
 			}
