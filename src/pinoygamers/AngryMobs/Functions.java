@@ -182,8 +182,8 @@ public class Functions {
      */
     public static Location randomLocation(Chunk c){
     	java.util.Random generator = new java.util.Random();
-    	double randX = c.getX() + 16 * generator.nextDouble();
-    	double randZ = c.getZ() + 16 * generator.nextDouble();
+    	double randX = 16 * generator.nextDouble();
+    	double randZ = 16 * generator.nextDouble();
     	double randY = 128 * generator.nextDouble();
     	
     	return new Location(c.getWorld(), randX, randY, randZ);
