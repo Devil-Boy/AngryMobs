@@ -144,7 +144,7 @@ public class Functions {
     }
     
     /**
-     * Makes all monsers within the configured range of a player begin to attack him.
+     * Makes all monsters within the configured range of a player begin to attack him.
      * @param player The unlucky individual
      */
     public void alertNearbyMonsters(Player player) {
