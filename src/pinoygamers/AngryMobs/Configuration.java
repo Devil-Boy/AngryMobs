@@ -22,15 +22,34 @@ public class Configuration implements java.io.Serializable {
 	public boolean upToDate = true;
 	
 	// List of Config Options
+	/**
+	 * Whether or not to output debug messages.
+	 */
 	boolean debug = false;
+	/**
+	 * The minimum distance a monster can spawn from a player.
+	 */
 	int alertRange = 16;
+	/**
+	 * The minimum distance a monster can spawn from a player.
+	 */
 	int monsterSpawnDistance = 24;
+	/**
+	 * The type of world.
+	 */
 	Environment worldtype = Environment.NORMAL;
+	/**
+	 * A list of monsters that can spawn in a world.
+	 */
 	LinkedList<String> spawnableMonsters; 
 	/**
 	 * The frequency to spawn monsters in milliseconds.
 	 */
 	int monsterSpawnFrequency = 10000;
+	/**
+	 * The maximum light level a monster can spawn in.
+	 */
+	int spawnMaxLight = 7;
 	
 	/**
 	 * Fills in the configuration based on the file.
@@ -63,6 +82,7 @@ public class Configuration implements java.io.Serializable {
 				} else if (worldtype == World.Environment.NETHER) {
 					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
 				}
+				spawnMaxLight = getInt("spawnMaxLight", 7);
 			}catch (Exception ex) {
 		    	
 		    }
@@ -73,10 +93,9 @@ public class Configuration implements java.io.Serializable {
 	
 	/**
 	 * Returns the int value of a variable.
-	 * 
 	 * @param label The variable name
 	 * @param thedefault The default value to return if the variable isn't an int.
-	 * @return
+	 * @return Whatever int was set.
 	 */
 	public int getInt(String label, int thedefault) {
         try {
@@ -89,11 +108,10 @@ public class Configuration implements java.io.Serializable {
     
 	/**
 	 * Returns the double value of a variable.
-	 * 
 	 * @param label The variable name
 	 * @param thedefault The default value to return if the variable isn't an int.
-	 * @return
-	 * @throws NoSuchElementException
+	 * @return Whatever was set.
+	 * @throws NoSuchElementException If the labeled value doesn't exist.
 	 */
     public double getDouble(String label, double thedefault) throws NoSuchElementException {
         try {
@@ -104,6 +122,12 @@ public class Configuration implements java.io.Serializable {
         }
     }
     
+    /**
+	 * Returns the a file that was in settings.
+	 * @param label The name of the key.
+	 * @param thedefault The default value to return if the key doesn't exist.
+	 * @return File which was configured.
+	 */
     public File getFile(String label) throws NoSuchElementException {
         String value = getString(label);
         return new File(value);
@@ -113,7 +137,7 @@ public class Configuration implements java.io.Serializable {
      * Returns the boolean value of the variable
      * @param label The variable name
      * @param thedefault Default value to return if an error occurs.
-     * @return
+     * @return Whatever the person set it to.
      */
     public boolean getBoolean(String label, boolean thedefault) {
     	String values;
@@ -245,6 +269,11 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	Here you put a list of monsters that can be spawned in\r\n");
     		out.write("#	the world. (separated by commas)\r\n");
     		out.write("spawnableMonsters=" + linkedListToString(spawnableMonsters) + "\r\n");
+    		out.write("\r\n");
+    		out.write("# Spawnable Light Level\r\n");
+    		out.write("#	This option lets you choose the maximum light level in\r\n");
+    		out.write("#	which a monster will be able to spawn in. (0 - 15)\r\n");
+    		out.write("spawnMaxLight=" + spawnMaxLight + "\r\n");
     		out.close();
     	} catch (Exception e) {
     		System.out.println("Couldn't generate the config! Are you sure you have permissions to write in this folder?");

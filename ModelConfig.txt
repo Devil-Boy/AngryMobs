@@ -22,3 +22,8 @@ monsterSpawnDistance=24
 #	Here you put a list of monsters that can be spawned in
 #	the world. (separated by commas)
 spawnableMonsters=Creeper,Skeleton,Spider,Zombie
+
+# Spawnable Light Level
+#	This option lets you choose the maximum light level in
+#	which a monster will be able to spawn in. (0 - 15)
+spawnMaxLight=7
