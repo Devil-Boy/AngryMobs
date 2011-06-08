@@ -213,6 +213,9 @@ public class Functions {
     	Location l = randomLocation(randomChunk(w));
     	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
     		l = randomLocation(randomChunk(w));
+    		while(!isOnGround(l.getBlock())){
+    			l.setY(l.getY()+1);
+    		}
     	}
     	return l.getBlock();
     }
