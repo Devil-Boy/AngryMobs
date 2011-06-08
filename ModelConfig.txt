@@ -27,3 +27,9 @@ spawnableMonsters=Creeper,Skeleton,Spider,Zombie
 #	This option lets you choose the maximum light level in
 #	which a monster will be able to spawn in. (0 - 15)
 spawnMaxLight=7
+
+# Disable Normal Monster Spawn
+#	Here you can turn off the normal monsters spawning of a
+#	world. Thus making all monsters spawned only from this
+#	plugin.
+disableNormalMonsters=false
