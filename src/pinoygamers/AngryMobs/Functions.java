@@ -211,13 +211,14 @@ public class Functions {
      */
     public static Block randomGroundBlock(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
+    	Block blockLocation = l.getBlock();
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(blockLocation) && !isOnGround(blockLocation)){
     		l = randomLocation(randomChunk(w));
-    		while(!isOnGround(l.getBlock())){
+    		while(!isOnGround(blockLocation)){
     			l.setY(l.getY()+1);
     		}
     	}
-    	return l.getBlock();
+    	return blockLocation;
     }
     
     /**
@@ -227,10 +228,11 @@ public class Functions {
      */
     public static Block randomAirBlock(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isAir(l.getBlock())){
+    	Block blockLocation = l.getBlock();
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(blockLocation) && !isAir(blockLocation)){
     		l = randomLocation(randomChunk(w));
     	}
-    	return l.getBlock();
+    	return blockLocation;
     }
     
     /**
