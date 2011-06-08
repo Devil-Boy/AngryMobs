@@ -124,8 +124,8 @@ public class Configuration implements java.io.Serializable {
     
     /**
 	 * Returns the a file that was in settings.
-	 * @param label The variable name
-	 * @param thedefault The default value to return if the variable isn't an int.
+	 * @param label The name of the key.
+	 * @param thedefault The default value to return if the key doesn't exist.
 	 * @return W
 	 */
     public File getFile(String label) throws NoSuchElementException {
