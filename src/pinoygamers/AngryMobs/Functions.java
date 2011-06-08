@@ -463,7 +463,7 @@ public class Functions {
    			for (int y=-2; y<5; y++) {
    				for (int z=-2; z<5; z++) {
    					Block currentBlock = block.getRelative(x, y, z);
-   					if(isAir(currentBlock)) {
+   					if(!isAir(currentBlock)) {
    						isItSafe = false;
    					}
    				}
