@@ -47,8 +47,8 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean spawnMob(Block spawnblock, String type, LinkedList<LivingEntity> mobSpawns) {
-    	return spawnMob(spawnblock.getLocation(), type, mobSpawns);
+	public static boolean spawnMob(Block spawnblock, String type, LinkedList<LivingEntity> mobSpawns, Boolean disableNormalMonsters) {
+    	return spawnMob(spawnblock.getLocation(), type, mobSpawns, disableNormalMonsters);
     }
 	
 	/**
@@ -58,7 +58,7 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean spawnMob(Location loc, String type, LinkedList<LivingEntity> mobSpawns) {
+	public static boolean spawnMob(Location loc, String type, LinkedList<LivingEntity> mobSpawns, Boolean disableNormalMonsters) {
 		boolean makeAngry = false;
     	type = properMonsterCase(type);
     	if(type.equalsIgnoreCase("AngryWolf")) {
@@ -70,8 +70,14 @@ public class Functions {
     	if (ct == null) {
         	return false;
         }
-    	mobSpawns.add(loc.getWorld().spawnCreature(loc, ct));
-    	LivingEntity creature = mobSpawns.getLast();
+    	
+    	LivingEntity creature;
+    	if (disableNormalMonsters) {
+    		mobSpawns.add(loc.getWorld().spawnCreature(loc, ct));
+    		creature = mobSpawns.getLast();
+    	} else {
+    		creature = loc.getWorld().spawnCreature(loc, ct);
+    	}
     	
     	if(makeAngry) {
     		try {
@@ -275,10 +281,10 @@ public class Functions {
      * @param e1 The mob we want to change
      * @param mtype What are we going to change it to
      */
-    public static void changeMob(Entity e1, String mtype, LinkedList<LivingEntity> mobSpawns) {
+    public static void changeMob(Entity e1, String mtype, LinkedList<LivingEntity> mobSpawns, Boolean disableNormalMonsters) {
     	Location location = e1.getLocation();
     	e1.remove();
-    	spawnMob(location, mtype, mobSpawns);
+    	spawnMob(location, mtype, mobSpawns, disableNormalMonsters);
     }
     
     /**
@@ -286,12 +292,12 @@ public class Functions {
      * @param player The unlucky individual
      * @param ctype Type you want all the mobs to change to.
      */
-    public static void changeAllNearbyMobs(Player player, CreatureType ctype, int range, LinkedList<LivingEntity> mobSpawns) {
+    public static void changeAllNearbyMobs(Player player, CreatureType ctype, int range, LinkedList<LivingEntity> mobSpawns, Boolean disableNormalMonsters) {
     	
     	Entity[] ents = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
     	
     	for (int i = 0; i < ents.length; i++) {
-    		changeMob(ents[i], ctype.getName(), mobSpawns);
+    		changeMob(ents[i], ctype.getName(), mobSpawns, disableNormalMonsters);
 		}
 	}
     
@@ -300,13 +306,13 @@ public class Functions {
      * @param w The world
      * @param ctype Type you want all the mobs to change to
      */
-    public static void changeAllMobs(World w, CreatureType ctype, LinkedList<LivingEntity> mobSpawns) {
+    public static void changeAllMobs(World w, CreatureType ctype, LinkedList<LivingEntity> mobSpawns, Boolean disableNormalMonsters) {
     	
     	Entity[] ents = (Entity[]) w.getEntities().toArray();
     	
     	for (int i = 0; i < ents.length; i++) {
 			if(isCreatureType(ents[i], ctype)) {
-				changeMob(ents[i], ctype.getName(), mobSpawns);
+				changeMob(ents[i], ctype.getName(), mobSpawns, disableNormalMonsters);
 			}
 		}
     }
