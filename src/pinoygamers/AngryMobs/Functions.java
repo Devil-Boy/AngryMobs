@@ -71,12 +71,9 @@ public class Functions {
         	return false;
         }
     	
-    	LivingEntity creature;
+    	LivingEntity creature = loc.getWorld().spawnCreature(loc, ct);
     	if (disableNormalMonsters) {
-    		mobSpawns.add(loc.getWorld().spawnCreature(loc, ct));
-    		creature = mobSpawns.getLast();
-    	} else {
-    		creature = loc.getWorld().spawnCreature(loc, ct);
+    		mobSpawns.add(creature);
     	}
     	
     	if(makeAngry) {
