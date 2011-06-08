@@ -27,6 +27,9 @@ public class AngryMobsEntityListener extends EntityListener {
     	LivingEntity theBorn = (LivingEntity) event.getEntity();
     	if (!plugin.mobSpawns.contains(theBorn) && plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
     		event.setCancelled(true);
+    		if (plugin.debug) {
+    			System.out.println("Normal Spawn canceled!");
+    		}
     	}
     }
 }
