@@ -12,7 +12,7 @@ Make the light level at which mobs spawn configurable
 <Devil's TODO list>
 Import and integrate Configuration class [Done]
 Make a function alertNearbyMonsters(Player player) [Done]
-Tux can use: Functions.alertNearbyMobs()
+Edit TODO list [Complete]
 
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
