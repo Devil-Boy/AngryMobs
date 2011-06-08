@@ -441,13 +441,5 @@ public class Functions {
     	}
 
     }
-    
-    public static Block spawnElevation() {
-    	return null;
-    }
-    
-    public static Block randomSpawn() {
-    	return null;
-    }
 
 }
