@@ -61,7 +61,7 @@ public class Functions {
 		boolean makeAngry = false;
     	type = properMonsterCase(type);
     	if(type.equalsIgnoreCase("AngryWolf")) {
-    		type = "WOLF";
+    		type = "Wolf";
     		makeAngry = true;
     	}
     	CreatureType ct = CreatureType.fromName(type);
