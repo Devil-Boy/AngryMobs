@@ -50,6 +50,10 @@ public class AngryMobsEntityListener extends EntityListener {
         			System.out.println("Just an innocent ");
         		}
     		}
+    	} else {
+    		if (listenerDebug) {
+    			System.out.println("No judgement necessary....");
+    		}
     	}
     	plugin.mobSpawns.removeLastOccurrence(theBorn);
     }
