@@ -432,8 +432,9 @@ public class Functions {
      * @return True if the block is right above the ground, false if not.
      */
     public static boolean isOnGround(Block block) {
+    	Block downBlock = block.getFace(BlockFace.DOWN);
     	if(isAir(block)){
-        	if(isAir(block.getFace(BlockFace.DOWN)) || isWater(block.getFace(BlockFace.DOWN)) || isLava(block.getFace(BlockFace.DOWN))) {
+        	if(isAir(downBlock) || isWater(downBlock) || isLava(downBlock) || isFire(downBlock)) {
         		return false;
         	} else {
         		return true;
