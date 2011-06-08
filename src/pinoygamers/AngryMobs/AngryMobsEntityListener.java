@@ -1,6 +1,9 @@
 package pinoygamers.AngryMobs;
 
+import java.util.LinkedList;
+
 import org.bukkit.Location;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityListener;
@@ -21,7 +24,10 @@ public class AngryMobsEntityListener extends EntityListener {
     }
 
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-    	
+    	LivingEntity theBorn = (LivingEntity) event.getEntity();
+    	if (!plugin.mobSpawns.contains(theBorn) && plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
+    		event.setCancelled(true);
+    	}
     }
 }
 

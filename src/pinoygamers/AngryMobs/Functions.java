@@ -29,6 +29,7 @@ import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
 
 import java.lang.Math;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -46,8 +47,8 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean spawnMob(Block spawnblock, String type) {
-    	return spawnMob(spawnblock.getLocation(), type);
+	public static boolean spawnMob(Block spawnblock, String type, LinkedList<LivingEntity> mobSpawns) {
+    	return spawnMob(spawnblock.getLocation(), type, mobSpawns);
     }
 	
 	/**
@@ -57,7 +58,7 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean spawnMob(Location loc, String type) {
+	public static boolean spawnMob(Location loc, String type, LinkedList<LivingEntity> mobSpawns) {
 		boolean makeAngry = false;
     	type = properMonsterCase(type);
     	if(type.equalsIgnoreCase("AngryWolf")) {
@@ -69,7 +70,8 @@ public class Functions {
     	if (ct == null) {
         	return false;
         }
-    	LivingEntity creature = loc.getWorld().spawnCreature(loc, ct);
+    	mobSpawns.add(loc.getWorld().spawnCreature(loc, ct));
+    	LivingEntity creature = mobSpawns.getLast();
     	
     	if(makeAngry) {
     		try {
@@ -273,10 +275,10 @@ public class Functions {
      * @param e1 The mob we want to change
      * @param mtype What are we going to change it to
      */
-    public static void changeMob(Entity e1, String mtype) {
+    public static void changeMob(Entity e1, String mtype, LinkedList<LivingEntity> mobSpawns) {
     	Location location = e1.getLocation();
     	e1.remove();
-    	spawnMob(location, mtype);
+    	spawnMob(location, mtype, mobSpawns);
     }
     
     /**
@@ -284,12 +286,12 @@ public class Functions {
      * @param player The unlucky individual
      * @param ctype Type you want all the mobs to change to.
      */
-    public static void changeAllNearbyMobs(Player player, CreatureType ctype, int range) {
+    public static void changeAllNearbyMobs(Player player, CreatureType ctype, int range, LinkedList<LivingEntity> mobSpawns) {
     	
     	Entity[] ents = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // "Nearby" will be the same as "nearby" for alertNearbyMonsters
     	
     	for (int i = 0; i < ents.length; i++) {
-    		changeMob(ents[i], ctype.getName());
+    		changeMob(ents[i], ctype.getName(), mobSpawns);
 		}
 	}
     
@@ -298,13 +300,13 @@ public class Functions {
      * @param w The world
      * @param ctype Type you want all the mobs to change to
      */
-    public static void changeAllMobs(World w, CreatureType ctype) {
+    public static void changeAllMobs(World w, CreatureType ctype, LinkedList<LivingEntity> mobSpawns) {
     	
     	Entity[] ents = (Entity[]) w.getEntities().toArray();
     	
     	for (int i = 0; i < ents.length; i++) {
 			if(isCreatureType(ents[i], ctype)) {
-				changeMob(ents[i], ctype.getName());
+				changeMob(ents[i], ctype.getName(), mobSpawns);
 			}
 		}
     }

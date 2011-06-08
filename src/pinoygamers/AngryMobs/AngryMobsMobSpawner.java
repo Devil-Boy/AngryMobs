@@ -1,12 +1,15 @@
 package pinoygamers.AngryMobs;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Flying;
+import org.bukkit.entity.LivingEntity;
 
 public class AngryMobsMobSpawner implements Runnable {
 
@@ -57,7 +60,7 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature);
+							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns);
 							notfound = false;
 						}
 					}
@@ -70,7 +73,7 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature);
+							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns);
 							notfound = false;
 						}
 					}

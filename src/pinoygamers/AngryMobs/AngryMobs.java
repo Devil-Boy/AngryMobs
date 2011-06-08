@@ -3,9 +3,12 @@ package pinoygamers.AngryMobs;
 import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.bukkit.block.Block;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -36,6 +39,7 @@ public class AngryMobs extends JavaPlugin {
     public boolean debug = false;
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
     public HashMap<String, AngryMobsMobSpawner> spawnerThreads = new HashMap<String, AngryMobsMobSpawner>();
+    public LinkedList<LivingEntity> mobSpawns = new LinkedList<LivingEntity>();
 
     public AngryMobs() {
         super(); // We have no idea what this does, but we have it here anyways.
