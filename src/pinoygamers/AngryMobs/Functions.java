@@ -371,6 +371,45 @@ public class Functions {
     	}
     }
     
+    /**
+     * Checks if the block is water.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of water.
+     */
+    public boolean isWater(Block theBlock) {
+    	if (theBlock.getTypeId() == 8 || theBlock.getTypeId() == 9) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    /**
+     * Checks if the block is lava.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of lava.
+     */
+    public boolean isLava(Block theBlock) {
+    	if (theBlock.getTypeId() == 10 || theBlock.getTypeId() == 11) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    /**
+     * Checks if the block is fire.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of exothermic energy from a combustion reaction.
+     */
+    public boolean isFire(Block theBlock) {
+    	if (theBlock.getTypeId() == 51) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     public static boolean isNight(long time) {
     	return time > 12000;
     }
