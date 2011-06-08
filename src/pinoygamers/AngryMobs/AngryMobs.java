@@ -68,7 +68,7 @@ public class AngryMobs extends JavaPlugin {
 			File conffile = new File(pluginMainDir + "/" + configPrefix + world.getName() + ".ini");
 			Configuration cf = new Configuration(conffile, world.getEnvironment());
 			worldConfigs.put(world.getName(), cf);
-			AngryMobsMobSpawner ms = new AngryMobsMobSpawner(this, worldConfigs.get(world.getName()), world);
+			AngryMobsMobSpawner ms = new AngryMobsMobSpawner(this, worldConfigs.get(world.getName()), world.getName());
 			ms.setWaitTime(cf.monsterSpawnFrequency);
 			Thread dispatchThread = new Thread(ms);
             dispatchThread.start();
