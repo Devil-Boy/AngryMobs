@@ -376,7 +376,7 @@ public class Functions {
      * @param theBlock The block which you're checking.
      * @return True if the block consists of water.
      */
-    public boolean isWater(Block theBlock) {
+    public static boolean isWater(Block theBlock) {
     	if (theBlock.getTypeId() == 8 || theBlock.getTypeId() == 9) {
     		return true;
     	} else {
@@ -389,7 +389,7 @@ public class Functions {
      * @param theBlock The block which you're checking.
      * @return True if the block consists of lava.
      */
-    public boolean isLava(Block theBlock) {
+    public static boolean isLava(Block theBlock) {
     	if (theBlock.getTypeId() == 10 || theBlock.getTypeId() == 11) {
     		return true;
     	} else {
@@ -402,7 +402,7 @@ public class Functions {
      * @param theBlock The block which you're checking.
      * @return True if the block consists of exothermic energy from a combustion reaction.
      */
-    public boolean isFire(Block theBlock) {
+    public static boolean isFire(Block theBlock) {
     	if (theBlock.getTypeId() == 51) {
     		return true;
     	} else {
@@ -431,7 +431,7 @@ public class Functions {
      */
     public static boolean isOnGround(Block block) {
     	if(isAir(block)){
-        	if(isAir(block.getFace(BlockFace.DOWN))) {
+        	if(isAir(block.getFace(BlockFace.DOWN)) || isWater(block.getFace(BlockFace.DOWN)) || isLava(block.getFace(BlockFace.DOWN))) {
         		return false;
         	} else {
         		return true;
