@@ -328,28 +328,27 @@ public class Functions {
      * @return True if the spawn isn't blocked.
      */
     public static Boolean safeSpawn(Block theBlock) {
-    	Boolean isSafe = true;
 		if (!isAir(theBlock.getFace(BlockFace.NORTH))) {
-			isSafe = false;
+			return false;
 		}
 		if (!isAir(theBlock.getFace(BlockFace.EAST))) {
-			isSafe = false;
+			return false;
 		}
 		if (!isAir(theBlock.getFace(BlockFace.SOUTH))) {
-			isSafe = false;
+			return false;
 		}
 		if (!isAir(theBlock.getFace(BlockFace.WEST))) {
-			isSafe = false;
+			return false;
 		}
 		if (!isAir(theBlock.getFace(BlockFace.UP))) {
-			isSafe = false;
+			return false;
 		}
 		/*
 		if (isAir(theBlock.getFace(BlockFace.DOWN))) {
 			isSafe = false;
 		}
 		*/
-		return isSafe;
+		return true;
 	}
     
     /**
