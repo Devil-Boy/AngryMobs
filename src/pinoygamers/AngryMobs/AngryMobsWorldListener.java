@@ -23,7 +23,7 @@ public class AngryMobsWorldListener extends WorldListener {
 			am.stopIt();
 			plugin.spawnerThreads.remove(event.getWorld().getName());
 		}
-		AngryMobsMobSpawner ms = new AngryMobsMobSpawner(plugin, plugin.worldConfigs.get(event.getWorld().getName()), event.getWorld());
+		AngryMobsMobSpawner ms = new AngryMobsMobSpawner(plugin, plugin.worldConfigs.get(event.getWorld().getName()), event.getWorld().getName());
 		ms.setWaitTime(plugin.worldConfigs.get(event.getWorld().getName()).monsterSpawnFrequency);
 		Thread dispatchThread = new Thread(ms);
         dispatchThread.start();

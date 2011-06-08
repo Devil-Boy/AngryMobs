@@ -332,19 +332,19 @@ public class Functions {
      */
     public static Boolean safeSpawn(Block theBlock) {
     	Boolean isSafe = true;
-		if (isAir(theBlock.getFace(BlockFace.NORTH))) {
+		if (!isAir(theBlock.getFace(BlockFace.NORTH))) {
 			isSafe = false;
 		}
-		if (isAir(theBlock.getFace(BlockFace.EAST))) {
+		if (!isAir(theBlock.getFace(BlockFace.EAST))) {
 			isSafe = false;
 		}
-		if (isAir(theBlock.getFace(BlockFace.SOUTH))) {
+		if (!isAir(theBlock.getFace(BlockFace.SOUTH))) {
 			isSafe = false;
 		}
-		if (isAir(theBlock.getFace(BlockFace.WEST))) {
+		if (!isAir(theBlock.getFace(BlockFace.WEST))) {
 			isSafe = false;
 		}
-		if (isAir(theBlock.getFace(BlockFace.UP))) {
+		if (!isAir(theBlock.getFace(BlockFace.UP))) {
 			isSafe = false;
 		}
 		/*

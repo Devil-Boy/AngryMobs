@@ -14,10 +14,10 @@ public class AngryMobsMobSpawner implements Runnable {
 	private boolean running = true;
 	int waittime = 10000;
 	Configuration config;
-	World world;
+	String world;
 	Random rand = new Random();
 	
-	public AngryMobsMobSpawner(AngryMobs plugin, Configuration config, World world) {
+	public AngryMobsMobSpawner(AngryMobs plugin, Configuration config, String world) {
 		this.plugin = plugin;
 		this.config = config;
 		this.world = world;
@@ -39,19 +39,43 @@ public class AngryMobsMobSpawner implements Runnable {
 			} catch (InterruptedException e) {
 				
 			}
+			if(config.debug) {
+				System.out.println("Looking for a spot... and the time is: " + plugin.getServer().getWorld(world).getTime());
+			}
 			boolean blockfound = false;
 			int tries = 0;
-			if(world.getLoadedChunks().length > 0 && 
-					(Functions.isNight(world.getTime()) 
-							|| world.getEnvironment() == Environment.NETHER)) {
+			if(plugin.getServer().getWorld(world).getLoadedChunks().length > 0) {
+				if(config.debug) {
+					System.out.println("Let's find a spot...");
+				}
 				CreatureType ct = CreatureType.fromName(
 					Functions.properMonsterCase(config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim()));
 				if(ct == CreatureType.GHAST) {
-					Block theblock = Functions.randomAirBlock(world, plugin.getServer(), config.monsterSpawnDistance);
-					world.spawnCreature(theblock.getLocation(), ct);
+					boolean notfound = true;
+					while(notfound) {
+						Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+							if(config.debug) {
+								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+							}
+							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							notfound = false;
+						}
+					}
+					
 				}else {
-					Block theblock = Functions.randomGroundBlock(world, plugin.getServer(), config.monsterSpawnDistance);
-					world.spawnCreature(theblock.getLocation(), ct);
+					boolean notfound = true;
+					while(notfound) {
+						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+							if(config.debug) {
+								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+							}
+							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							notfound = false;
+						}
+					}
+					
 				}
 			}
 		}
