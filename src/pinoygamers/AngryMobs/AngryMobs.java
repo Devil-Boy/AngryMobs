@@ -105,25 +105,6 @@ public class AngryMobs extends JavaPlugin {
     public void setDebugging(final Player player, final boolean value) {
         debugees.put(player, value);
     }
-    
-    /* For Nat
-     for (int x=spongeAreaDownLimit; x<spongeAreaUpLimit; x++) {
-    			for (int y=spongeAreaDownLimit; y<spongeAreaUpLimit; y++) {
-    				for (int z=spongeAreaDownLimit; z<spongeAreaUpLimit; z++) {		
-    					if(plugin.debug) {
-    						System.out.println("Checking: " + x + ", " + y + ", " + z);
-    					}
-    					Block currentBlock = event.getBlock().getRelative(x, y, z);
-    					addToSpongeAreas(getBlockCoords(currentBlock));
-    					if (blockIsAffected(currentBlock)) {
-    						currentBlock.setType(Material.AIR);
-    						if (plugin.debug) {
-    							System.out.println("The sponge absorbed " + currentBlock.getType());
-    						}
-    					}
-    	    		}
-        		}
-    		}
-     */
+
 }
 
