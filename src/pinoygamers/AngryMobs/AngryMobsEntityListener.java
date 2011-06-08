@@ -25,7 +25,7 @@ public class AngryMobsEntityListener extends EntityListener {
     }
 
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-    	if (plugin.debug) {
+    	if (true) {
 			System.out.println("A creature wishes to spawn!");
 		}
     	LivingEntity theBorn = (LivingEntity) event.getEntity();

@@ -18,3 +18,5 @@ Add option to disable normal spawner thing.
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
 add changeAllMobs [Done]
+
+For force compile: http://home.jrtechsupport.com:7272/job/AngryMobs/build?token=wet
