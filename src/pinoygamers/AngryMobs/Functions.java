@@ -184,7 +184,7 @@ public class Functions {
     /**
      * Returns a random location from a given chunk.
      * @param c The chunk
-     * @return
+     * @return Returns a random location
      */
     public static Location randomLocation(Chunk c){
     	java.util.Random generator = new java.util.Random();
@@ -195,6 +195,13 @@ public class Functions {
     	return new Location(c.getWorld(), randX, randY, randZ);
     }
     
+    /**
+     * Sees if there are any players in a proximity to a certain location
+     * @param s Server we are checking
+     * @param l The location are we checking
+     * @param minDistance The radius from the radius to the players we are looking for
+     * @return True if there were players, false if not.
+     */
     public static boolean playersInProximity(Server s, Location l, int minDistance){
     	for(Player p : s.getOnlinePlayers()){
     		if(distance(l, p.getLocation())<minDistance){
