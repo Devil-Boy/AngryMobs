@@ -150,8 +150,10 @@ public class Functions {
     }
     
     /**
-     * Returns a random location, on the ground, from a given world.
+     * Returns a random location, on the ground, from a given world, with no players within minDistance.
      * @param w the world
+     * @param s the server
+     * @param minDistance minimum distance to players for enemies to spawn at.
      * @return
      */
     public static Location randomGroundLocation(World w, Server s, int minDistance){
@@ -163,8 +165,9 @@ public class Functions {
     }
     
     /**
-     * Returns a random aerial location from a given world.
+     * Returns a random aerial location from a given world, with no players within minDistance.
      * @param w the world
+     * @param s the server
      * @return
      */
     public static Location randomAirLocation(World w, Server s, int minDistance){
@@ -182,8 +185,8 @@ public class Functions {
      */
     public static Location randomLocation(Chunk c){
     	java.util.Random generator = new java.util.Random();
-    	double randX = c.getX() + 16 * generator.nextDouble();
-    	double randZ = c.getZ() + 16 * generator.nextDouble();
+    	double randX = (c.getX()*16) + 16 * generator.nextDouble();
+    	double randZ = (c.getZ()*16) + 16 * generator.nextDouble();
     	double randY = 128 * generator.nextDouble();
     	
     	return new Location(c.getWorld(), randX, randY, randZ);
