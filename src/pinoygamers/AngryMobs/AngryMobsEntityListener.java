@@ -33,13 +33,22 @@ public class AngryMobsEntityListener extends EntityListener {
     		if (plugin.debug) {
     			System.out.println("Pass judgement on him!");
     		}
-    		if ((!plugin.mobSpawns.contains(theBorn)) && (theBorn instanceof Monster)) {
-    			event.setCancelled(true);
-        		if (plugin.debug) {
-        			System.out.println("Normal Spawn canceled!");
+    		if (theBorn instanceof Monster) {
+    			if (plugin.mobSpawns.contains(theBorn)) {
+    				if (plugin.debug) {
+            			System.out.println("You may live...");
+            		}
+    			} else {
+    				event.setCancelled(true);
+            		if (plugin.debug) {
+            			System.out.println("Normal Spawn canceled!");
+            		}
+    			}
+    		} else {
+    			if (plugin.debug) {
+        			System.out.println("Just an innocent ");
         		}
     		}
-    		
     	}
     	plugin.mobSpawns.removeLastOccurrence(theBorn);
     }
