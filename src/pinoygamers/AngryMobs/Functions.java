@@ -426,7 +426,7 @@ public class Functions {
      * Checks to see if the light level of a block is below a certain number
      * @param theBlock The block we are checking
      * @param lightLevel The maximum light level
-     * @return
+     * @return 
      */
     public static boolean isLowerThanLightLevel(Block theBlock, int lightLevel) {
     	return lightLevel > theBlock.getLightLevel();
@@ -450,5 +450,25 @@ public class Functions {
     	}
 
     }
+    
+    /**
+     * Sees if block area is safe for ghast
+     * @param block The block area
+     * @return True if its safe, false if not.
+     */
+    public static boolean safeGhast(Block block) {
+    	boolean isItSafe = true;
+    	for (int x=-2; x<3; x++) {
+   			for (int y=-2; y<5; y++) {
+   				for (int z=-2; z<5; z++) {
+   					Block currentBlock = block.getRelative(x, y, z);
+   					if(isAir(currentBlock)) {
+   						isItSafe = false;
+   					}
+   				}
+   	    	}
+       	}
+    	return isItSafe;
+   	}
 
 }
