@@ -54,7 +54,7 @@ public class AngryMobsMobSpawner implements Runnable {
 					boolean notfound = true;
 					while(notfound) {
 						Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
-						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
 							if(config.debug) {
 								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
@@ -67,7 +67,7 @@ public class AngryMobsMobSpawner implements Runnable {
 					boolean notfound = true;
 					while(notfound) {
 						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
-						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
 							if(config.debug) {
 								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
