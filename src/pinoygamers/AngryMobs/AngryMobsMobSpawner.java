@@ -48,17 +48,16 @@ public class AngryMobsMobSpawner implements Runnable {
 				if(config.debug) {
 					System.out.println("Let's find a spot...");
 				}
-				CreatureType ct = CreatureType.fromName(
-					Functions.properMonsterCase(config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim()));
-				if(ct == CreatureType.GHAST) {
+				String creature = config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim();
+				if(creature.equalsIgnoreCase("ghast")) {
 					boolean notfound = true;
 					while(notfound) {
 						Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
 						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
 							if(config.debug) {
-								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}
@@ -69,9 +68,9 @@ public class AngryMobsMobSpawner implements Runnable {
 						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
 						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
 							if(config.debug) {
-								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}

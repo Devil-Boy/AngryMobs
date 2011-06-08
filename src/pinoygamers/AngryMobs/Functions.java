@@ -46,33 +46,8 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean SpawnMob(Block spawnblock, String type) {
-    	boolean makeAngry = false;
-    	Location loc = spawnblock.getLocation();
-    	if (type.equalsIgnoreCase("PigZombie")) {
-    		type = "PigZombie";
-    	} else if(type.equalsIgnoreCase("AngryWolf")) {
-    		type = "WOLF";
-    		makeAngry = true;
-    	} else {
-    		type = Functions.capitalCase(type);
-    	}
-    	CreatureType ct = CreatureType.fromName(type);
-    	
-    	if (ct == null) {
-        	return false;
-        }
-    	LivingEntity creature = spawnblock.getWorld().spawnCreature(loc, ct);
-    	
-    	if(makeAngry) {
-    		try {
-				Wolf wolf = (Wolf) creature;
-				wolf.setAngry(true);
-			} catch (Exception e) {
-				return false;
-			}
-    	}
-        return true;
+	public static boolean spawnMob(Block spawnblock, String type) {
+    	return spawnMob(spawnblock.getLocation(), type);
     }
 	
 	/**
@@ -82,19 +57,28 @@ public class Functions {
 	 * @param type A string with any valid minecraft mob type
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
-	public static boolean SpawnMob(Location loc, String type) {
-		
-    	if (type.equalsIgnoreCase("PigZombie")) {
-    		type = "PigZombie";
-    	}else {
-    		type = Functions.capitalCase(type);
+	public static boolean spawnMob(Location loc, String type) {
+		boolean makeAngry = false;
+    	type = properMonsterCase(type);
+    	if(type.equalsIgnoreCase("AngryWolf")) {
+    		type = "WOLF";
+    		makeAngry = true;
     	}
     	CreatureType ct = CreatureType.fromName(type);
     	
     	if (ct == null) {
         	return false;
         }
-    	loc.getWorld().spawnCreature(loc, ct);
+    	LivingEntity creature = loc.getWorld().spawnCreature(loc, ct);
+    	
+    	if(makeAngry) {
+    		try {
+				Wolf wolf = (Wolf) creature;
+				wolf.setAngry(true);
+			} catch (Exception e) {
+				return false;
+			}
+    	}
         return true;
     }
 	
@@ -116,6 +100,8 @@ public class Functions {
     public static String properMonsterCase(String type) {
 		if (type.equalsIgnoreCase("PigZombie")) {
     		return "PigZombie";
+    	}else if (type.equalsIgnoreCase("AngryWolf")) {
+    		return "AngryWolf";
     	}else {
     		return capitalCase(type);
     	}
@@ -290,7 +276,7 @@ public class Functions {
     public static void changeMob(Entity e1, String mtype) {
     	Location location = e1.getLocation();
     	e1.remove();
-    	SpawnMob(location, mtype);
+    	spawnMob(location, mtype);
     }
     
     /**
