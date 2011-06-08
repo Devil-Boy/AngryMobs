@@ -25,12 +25,21 @@ public class AngryMobsEntityListener extends EntityListener {
     }
 
     public void onCreatureSpawn(CreatureSpawnEvent event) {
+    	if (plugin.debug) {
+			System.out.println("A creature wishes to spawn!");
+		}
     	LivingEntity theBorn = (LivingEntity) event.getEntity();
-    	if ((!plugin.mobSpawns.contains(theBorn)) && plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters && (theBorn instanceof Monster)) {
-    		event.setCancelled(true);
+    	if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
     		if (plugin.debug) {
-    			System.out.println("Normal Spawn canceled!");
+    			System.out.println("Pass judgement on him!");
     		}
+    		if ((!plugin.mobSpawns.contains(theBorn)) && (theBorn instanceof Monster)) {
+    			event.setCancelled(true);
+        		if (plugin.debug) {
+        			System.out.println("Normal Spawn canceled!");
+        		}
+    		}
+    		
     	}
     	plugin.mobSpawns.removeLastOccurrence(theBorn);
     }

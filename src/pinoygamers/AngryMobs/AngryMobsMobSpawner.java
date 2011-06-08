@@ -60,7 +60,7 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, plugin.worldConfigs.get(theblock.getWorld().getName()).disableNormalMonsters);
+							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, config.disableNormalMonsters);
 							notfound = false;
 						}
 					}
@@ -73,7 +73,7 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, plugin.worldConfigs.get(theblock.getWorld().getName()).disableNormalMonsters);
+							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, config.disableNormalMonsters);
 							notfound = false;
 						}
 					}
