@@ -158,8 +158,11 @@ public class Functions {
      */
     public static Location randomGroundLocation(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock())){
     		l = randomLocation(randomChunk(w));
+    		while(!isOnGround(l.getBlock())){
+    			l.setY(l.getY()+1);
+    		}
     	}
     	return l;
     }
