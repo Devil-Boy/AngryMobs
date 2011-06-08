@@ -93,10 +93,9 @@ public class Configuration implements java.io.Serializable {
 	
 	/**
 	 * Returns the int value of a variable.
-	 * 
 	 * @param label The variable name
 	 * @param thedefault The default value to return if the variable isn't an int.
-	 * @return
+	 * @return Whatever int was set.
 	 */
 	public int getInt(String label, int thedefault) {
         try {
@@ -109,11 +108,10 @@ public class Configuration implements java.io.Serializable {
     
 	/**
 	 * Returns the double value of a variable.
-	 * 
 	 * @param label The variable name
 	 * @param thedefault The default value to return if the variable isn't an int.
-	 * @return
-	 * @throws NoSuchElementException
+	 * @return Whatever was set.
+	 * @throws NoSuchElementException If the labeled value doesn't exist.
 	 */
     public double getDouble(String label, double thedefault) throws NoSuchElementException {
         try {
@@ -124,6 +122,12 @@ public class Configuration implements java.io.Serializable {
         }
     }
     
+    /**
+	 * Returns the a file that was in settings.
+	 * @param label The variable name
+	 * @param thedefault The default value to return if the variable isn't an int.
+	 * @return W
+	 */
     public File getFile(String label) throws NoSuchElementException {
         String value = getString(label);
         return new File(value);
@@ -133,7 +137,7 @@ public class Configuration implements java.io.Serializable {
      * Returns the boolean value of the variable
      * @param label The variable name
      * @param thedefault Default value to return if an error occurs.
-     * @return
+     * @return Whatever the person set it to.
      */
     public boolean getBoolean(String label, boolean thedefault) {
     	String values;
