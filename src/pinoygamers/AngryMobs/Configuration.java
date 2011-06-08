@@ -57,7 +57,7 @@ public class Configuration implements java.io.Serializable {
 		        debug = getBoolean("debug", false);
 		        alertRange = getInt("alertRange", 16);
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
-		        monsterSpawnFrequency = getInt("monsterSpawnFrequency", 10) *1000;
+		        monsterSpawnFrequency = (int)(getDouble("monsterSpawnFrequency", 10) *1000);
 				if (worldtype == World.Environment.NORMAL) {
 					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
 				} else if (worldtype == World.Environment.NETHER) {
@@ -239,7 +239,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("\r\n");
     		out.write("# Monster Spawn Timing\r\n");
     		out.write("#	How many seconds to wait between each monster spawn.\r\n");
-    		out.write("monsterSpawnFrequency=" + monsterSpawnFrequency/1000 + "\r\n");
+    		out.write("monsterSpawnFrequency=" + ((double)monsterSpawnFrequency)/(double)1000 + "\r\n");
     		out.write("\r\n");
     		out.write("# Spawnable Monsters\r\n");
     		out.write("#	Here you put a list of monsters that can be spawned in\r\n");

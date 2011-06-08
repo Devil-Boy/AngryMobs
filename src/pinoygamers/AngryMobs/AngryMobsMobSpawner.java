@@ -44,26 +44,38 @@ public class AngryMobsMobSpawner implements Runnable {
 			}
 			boolean blockfound = false;
 			int tries = 0;
-			if(plugin.getServer().getWorld(world).getLoadedChunks().length > 0 && 
-					(Functions.isNight(plugin.getServer().getWorld(world).getTime()) 
-							|| plugin.getServer().getWorld(world).getEnvironment() == Environment.NETHER)) {
+			if(plugin.getServer().getWorld(world).getLoadedChunks().length > 0) {
 				if(config.debug) {
 					System.out.println("Let's find a spot...");
 				}
 				CreatureType ct = CreatureType.fromName(
 					Functions.properMonsterCase(config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim()));
 				if(ct == CreatureType.GHAST) {
-					Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
-					if(config.debug) {
-						System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+					boolean notfound = true;
+					while(notfound) {
+						Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+							if(config.debug) {
+								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+							}
+							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							notfound = false;
+						}
 					}
-					plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+					
 				}else {
-					Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
-					if(config.debug) {
-						System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+					boolean notfound = true;
+					while(notfound) {
+						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						if(Functions.isLowerThanLightLevel(theblock, 7)) {
+							if(config.debug) {
+								System.out.println("Spawning a " + ct.getName() + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+							}
+							plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+							notfound = false;
+						}
 					}
-					plugin.getServer().getWorld(world).spawnCreature(theblock.getLocation(), ct);
+					
 				}
 			}
 		}
