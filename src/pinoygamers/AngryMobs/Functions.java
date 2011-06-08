@@ -47,11 +47,14 @@ public class Functions {
 	 * @return True if spawn was successful, false if the spawn wasn't.
 	 */
 	public static boolean SpawnMob(Block spawnblock, String type) {
-    	
+    	boolean makeAngry = false;
     	Location loc = spawnblock.getLocation();
     	if (type.equalsIgnoreCase("PigZombie")) {
     		type = "PigZombie";
-    	}else {
+    	} else if(type.equalsIgnoreCase("AngryWolf")) {
+    		type = "WOLF";
+    		makeAngry = true;
+    	} else {
     		type = Functions.capitalCase(type);
     	}
     	CreatureType ct = CreatureType.fromName(type);
@@ -59,7 +62,16 @@ public class Functions {
     	if (ct == null) {
         	return false;
         }
-    	spawnblock.getWorld().spawnCreature(loc, ct);
+    	LivingEntity creature = spawnblock.getWorld().spawnCreature(loc, ct);
+    	
+    	if(makeAngry) {
+    		try {
+				Wolf wolf = (Wolf) creature;
+				wolf.setAngry(true);
+			} catch (Exception e) {
+				return false;
+			}
+    	}
         return true;
     }
 	
