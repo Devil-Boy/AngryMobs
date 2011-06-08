@@ -27,6 +27,7 @@ import pinoygamers.AngryMobs.Configuration;
 public class AngryMobs extends JavaPlugin {
     private final AngryMobsPlayerListener playerListener = new AngryMobsPlayerListener(this);
     private final AngryMobsBlockListener blockListener = new AngryMobsBlockListener(this);
+    private final AngryMobsEntityListener entityListener = new AngryMobsEntityListener(this);
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     Configuration pluginSettings;
     String pluginMainDir = "plugins/AngryMobs";
@@ -61,6 +62,7 @@ public class AngryMobs extends JavaPlugin {
         final AngryMobsWorldListener worldL = new AngryMobsWorldListener( this );
         
         pm.registerEvent( Event.Type.WORLD_LOAD, worldL, Event.Priority.Monitor, this );
+        pm.registerEvent( Event.Type.CREATURE_SPAWN, entityListener, Event.Priority.Monitor, this );
        
         List<World> worlds = getServer().getWorlds();
 		

@@ -19,6 +19,9 @@ import org.bukkit.World.Environment;
 public class Configuration implements java.io.Serializable {
 	private File file;
 	Properties p;
+	/**
+	 * Whether or not the configuration file has all the new options.
+	 */
 	public boolean upToDate = true;
 	
 	// List of Config Options
@@ -27,7 +30,7 @@ public class Configuration implements java.io.Serializable {
 	 */
 	boolean debug = false;
 	/**
-	 * The minimum distance a monster can spawn from a player.
+	 * The range at which a mob will begin to attempt to maul you
 	 */
 	int alertRange = 16;
 	/**
@@ -50,6 +53,10 @@ public class Configuration implements java.io.Serializable {
 	 * The maximum light level a monster can spawn in.
 	 */
 	int spawnMaxLight = 7;
+	/**
+	 * Whether or not normal monster spawns will occur.
+	 */
+	Boolean disableNormalMonsters = false;
 	
 	/**
 	 * Fills in the configuration based on the file.
@@ -83,6 +90,7 @@ public class Configuration implements java.io.Serializable {
 					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
 				}
 				spawnMaxLight = getInt("spawnMaxLight", 7);
+				disableNormalMonsters = getBoolean("disableNormalMonsters", false);
 			}catch (Exception ex) {
 		    	
 		    }
@@ -274,6 +282,12 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	This option lets you choose the maximum light level in\r\n");
     		out.write("#	which a monster will be able to spawn in. (0 - 15)\r\n");
     		out.write("spawnMaxLight=" + spawnMaxLight + "\r\n");
+    		out.write("\r\n");
+    		out.write("# Disable Normal Monster Spawn\r\n");
+    		out.write("#	Here you can turn off the normal monsters spawning of a\r\n");
+    		out.write("#	world. Thus making all monsters spawned only from this\r\n");
+    		out.write("#	plugin.\r\n");
+    		out.write("disableNormalMonsters=" + disableNormalMonsters + "\r\n");
     		out.close();
     	} catch (Exception e) {
     		System.out.println("Couldn't generate the config! Are you sure you have permissions to write in this folder?");
