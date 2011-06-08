@@ -1,6 +1,6 @@
 # AngryMobs Configuration
 #
-# Each file only affects the world named in th filename.
+# Each file only affects the world named in the filename.
 
 # Debug Messages
 #	This can activate debug output messages for if you

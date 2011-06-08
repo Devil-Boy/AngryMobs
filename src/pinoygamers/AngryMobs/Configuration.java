@@ -219,7 +219,7 @@ public class Configuration implements java.io.Serializable {
     		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
     		out.write("# AngryMobs Configuration\r\n");
     		out.write("#\r\n");
-    		out.write("# Each file only affects the world named in th filename.\r\n");
+    		out.write("# Each file only affects the world named in the filename.\r\n");
     		out.write("\r\n");
     		out.write("# Debug Messages\r\n");
     		out.write("#	This can activate debug output messages for if you\r\n");

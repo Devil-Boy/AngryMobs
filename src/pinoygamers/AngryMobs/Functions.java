@@ -158,8 +158,11 @@ public class Functions {
      */
     public static Location randomGroundLocation(World w, Server s, int minDistance){
     	Location l = randomLocation(randomChunk(w));
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
+    	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock())){
     		l = randomLocation(randomChunk(w));
+    		while(!isOnGround(l.getBlock())){
+    			l.setY(l.getY()+1);
+    		}
     	}
     	return l;
     }
@@ -210,6 +213,9 @@ public class Functions {
     	Location l = randomLocation(randomChunk(w));
     	while(playersInProximity(s, l, minDistance) && !safeSpawn(l.getBlock()) && !isOnGround(l.getBlock())){
     		l = randomLocation(randomChunk(w));
+    		while(!isOnGround(l.getBlock())){
+    			l.setY(l.getY()+1);
+    		}
     	}
     	return l.getBlock();
     }
@@ -364,6 +370,45 @@ public class Functions {
     	}
     }
     
+    /**
+     * Checks if the block is water.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of water.
+     */
+    public static boolean isWater(Block theBlock) {
+    	if (theBlock.getTypeId() == 8 || theBlock.getTypeId() == 9) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    /**
+     * Checks if the block is lava.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of lava.
+     */
+    public static boolean isLava(Block theBlock) {
+    	if (theBlock.getTypeId() == 10 || theBlock.getTypeId() == 11) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    /**
+     * Checks if the block is fire.
+     * @param theBlock The block which you're checking.
+     * @return True if the block consists of exothermic energy from a combustion reaction.
+     */
+    public static boolean isFire(Block theBlock) {
+    	if (theBlock.getTypeId() == 51) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     public static boolean isNight(long time) {
     	return time > 12000;
     }
@@ -385,7 +430,7 @@ public class Functions {
      */
     public static boolean isOnGround(Block block) {
     	if(isAir(block)){
-        	if(isAir(block.getFace(BlockFace.DOWN))) {
+        	if(isAir(block.getFace(BlockFace.DOWN)) || isWater(block.getFace(BlockFace.DOWN)) || isLava(block.getFace(BlockFace.DOWN))) {
         		return false;
         	} else {
         		return true;
@@ -394,14 +439,6 @@ public class Functions {
     		return false;
     	}
 
-    }
-    
-    public static Block spawnElevation() {
-    	return null;
-    }
-    
-    public static Block randomSpawn() {
-    	return null;
     }
 
 }
