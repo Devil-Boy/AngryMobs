@@ -513,5 +513,21 @@ public class Functions {
 		}
     	return toReturn;
     }
+    
+    /**
+     * Gets the CreatureType of an Entity
+     * @param e The entity that we are checking for
+     * @return Returns the CreatureType of the Entity
+     */
+    public static CreatureType getCreatureType(LivingEntity e) {
+    	CreatureType toReturn = null;
+    	for (CreatureType c : CreatureType.values()) {
+			if(isCreatureType(e, c)) {
+				toReturn = c;
+				break;
+			}
+		}
+    	return toReturn;
+    }
 
 }
