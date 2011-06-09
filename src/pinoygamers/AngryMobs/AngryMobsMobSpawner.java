@@ -98,6 +98,9 @@ public class AngryMobsMobSpawner implements Runnable {
 				}
 				if (config.disableNormalMonsters) {
 					plugin.mobSpawns.add(spawnedCreatureID);
+					if(config.debug) {
+						System.out.println("Creature " + spawnedCreatureID + "wishes to live.");
+					}
 				}
 			}
 		}
