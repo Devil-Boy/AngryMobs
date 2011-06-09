@@ -3,6 +3,7 @@ package pinoygamers.AngryMobs;
 import java.util.LinkedList;
 
 import org.bukkit.Location;
+import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -34,7 +35,7 @@ public class AngryMobsEntityListener extends EntityListener {
     		if (listenerDebug) {
     			System.out.println("Pass judgement on him!");
     		}
-    		if (theBorn instanceof Monster) {
+    		if (Functions.isCreatureType(theBorn, CreatureType.MONSTER) || Functions.isCreatureType(theBorn, CreatureType.WOLF)) {
     			if (plugin.mobSpawnLocations.contains(theBorn.getLocation().getBlock())) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
