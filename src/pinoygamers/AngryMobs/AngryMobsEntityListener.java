@@ -35,7 +35,7 @@ public class AngryMobsEntityListener extends EntityListener {
     		if (listenerDebug) {
     			System.out.println("Pass judgement on him!");
     		}
-    		if (Functions.isCreatureType(theBorn, CreatureType.MONSTER) || Functions.isCreatureType(theBorn, CreatureType.WOLF)) {
+    		if (Functions.isCreatureType(theBorn, CreatureType.MONSTER) || Functions.isCreatureType(theBorn, CreatureType.WOLF) || Functions.isCreatureType(theBorn, CreatureType.GHAST) || Functions.isCreatureType(theBorn, CreatureType.SLIME)) {
     			if (plugin.mobSpawnLocations.contains(theBorn.getLocation().getBlock())) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
