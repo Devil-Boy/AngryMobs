@@ -55,7 +55,7 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("No judgement necessary....");
     		}
     	}
-    	plugin.mobSpawns.removeLastOccurrence(theBorn);
+    	plugin.mobSpawns.removeLastOccurrence(theBorn.getEntityId());
     }
 }
 
