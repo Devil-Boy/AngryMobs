@@ -27,7 +27,7 @@ public class AngryMobsEntityListener extends EntityListener {
 
     public void onCreatureSpawn(CreatureSpawnEvent event) {
     	if (listenerDebug) {
-			System.out.println("A creature wishes to spawn! Current allowed: " + Functions.arrayToString((String[]) plugin.mobSpawns.toArray(), ", "));
+			System.out.println("A creature wishes to spawn! Current allowed: " + Functions.arrayToString(plugin.mobSpawns.toArray(), ", "));
 		}
     	LivingEntity theBorn = (LivingEntity) event.getEntity();
     	if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
