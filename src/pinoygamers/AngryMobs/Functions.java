@@ -473,5 +473,21 @@ public class Functions {
        	}
     	return isItSafe;
    	}
+    
+    /**
+     * Gets an entity from its ID
+     * @param id The ID of the entity you are trying to obtain
+     * @param world The world to get the entity from
+     * @return The entity with the given ID. If no entity in the world has that ID, then returns null.
+     */
+    public static Entity getEntityFromID(int id, World world) {
+    	Entity[] worldEntities = (Entity[]) world.getEntities().toArray();
+    	for (int i=0; i<worldEntities.length; i++) {
+    		if (worldEntities[i].getEntityId() == id) {
+    			return worldEntities[i];
+    		}
+    	}
+    	return null;
+    }
 
 }
