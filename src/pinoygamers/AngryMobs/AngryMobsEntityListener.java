@@ -21,7 +21,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class AngryMobsEntityListener extends EntityListener {
     private final AngryMobs plugin;
     /**
-     * Whether or not this listener wil output debug messages.
+     * Whether or not this listener will output debug messages.
      */
     public Boolean listenerDebug = false;
 
