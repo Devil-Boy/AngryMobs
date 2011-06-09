@@ -77,13 +77,10 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
 							if (config.disableNormalMonsters) {
-								plugin.mobSpawns.add(spawnedCreatureID);
-								if(config.debug) {
-									System.out.println("Creature " + spawnedCreatureID + " wishes to live.");
-								}
+								plugin.mobSpawnLocations.add(theblock.getLocation().getBlock());
 							}
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}
@@ -96,13 +93,10 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
 							if (config.disableNormalMonsters) {
-								plugin.mobSpawns.add(spawnedCreatureID);
-								if(config.debug) {
-									System.out.println("Creature " + spawnedCreatureID + " wishes to live.");
-								}
+								plugin.mobSpawnLocations.add(theblock.getLocation().getBlock());
 							}
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}
