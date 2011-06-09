@@ -27,7 +27,7 @@ public class AngryMobsEntityListener extends EntityListener {
 
     public void onCreatureSpawn(CreatureSpawnEvent event) {
     	if (listenerDebug) {
-			System.out.println("A creature wishes to spawn! Current allowed: " + Functions.arrayToString((String[]) plugin.mobSpawns.toArray(), ", "));
+			System.out.println("A creature wishes to spawn! Current allowed: " + Functions.arrayToString(plugin.mobSpawns.toArray(), ", "));
 		}
     	LivingEntity theBorn = (LivingEntity) event.getEntity();
     	if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
@@ -35,10 +35,11 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("Pass judgement on him!");
     		}
     		if (theBorn instanceof Monster) {
-    			if (plugin.mobSpawns.remove(theBorn.getEntityId()) != null) {
+    			if (plugin.mobSpawns.contains(theBorn.getEntityId())) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
             		}
+    				plugin.mobSpawns.removeLastOccurrence(theBorn.getEntityId());
     			} else {
     				event.setCancelled(true);
             		if (listenerDebug) {

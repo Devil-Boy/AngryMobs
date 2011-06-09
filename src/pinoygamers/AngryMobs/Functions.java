@@ -492,14 +492,14 @@ public class Functions {
     
     /**
      * Turns in an array into a string
-     * @param array The array to turn into a string
+     * @param objects The array to turn into a string
      * @param seperator A string that seperates each item in the array
      * @return The array in string form
      */
-    public static String arrayToString(String[] array, String seperator) {
+    public static String arrayToString(Object[] objects, String seperator) {
     	String toReturn = "";
-    	for (int i = 0; i < array.length; i++) {
-    		toReturn = toReturn.concat(array[i]);
+    	for (int i = 0; i < objects.length; i++) {
+    		toReturn = toReturn.concat(objects[i].toString());
     		toReturn = toReturn.concat(seperator);
 		}
     	return toReturn;
