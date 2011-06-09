@@ -39,7 +39,7 @@ public class AngryMobs extends JavaPlugin {
     public boolean debug = false;
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
     public HashMap<String, AngryMobsMobSpawner> spawnerThreads = new HashMap<String, AngryMobsMobSpawner>();
-    public LinkedList<Integer> mobSpawns = new LinkedList<Integer>();
+    public LinkedList<Block> mobSpawnLocations = new LinkedList<Block>();
 
     public AngryMobs() {
         super(); // We have no idea what this does, but we have it here anyways.

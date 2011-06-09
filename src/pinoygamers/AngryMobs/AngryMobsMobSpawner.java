@@ -78,13 +78,9 @@ public class AngryMobsMobSpawner implements Runnable {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
 							if (config.disableNormalMonsters) {
-								plugin.mobSpawns.add(spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId());
-								if(config.debug) {
-									System.out.println("Creature " + spawnedCreatureID + " wishes to live.");
-								}
-							} else {
-								spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
+								plugin.mobSpawnLocations.add(theblock.getLocation().getBlock());
 							}
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}
@@ -98,13 +94,9 @@ public class AngryMobsMobSpawner implements Runnable {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
 							if (config.disableNormalMonsters) {
-								plugin.mobSpawns.add(spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId());
-								if(config.debug) {
-									System.out.println("Creature " + spawnedCreatureID + " wishes to live.");
-								}
-							} else {
-								spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
+								plugin.mobSpawnLocations.add(theblock.getLocation().getBlock());
 							}
+							Functions.spawnMob(theblock.getLocation(), creature);
 							notfound = false;
 						}
 					}
