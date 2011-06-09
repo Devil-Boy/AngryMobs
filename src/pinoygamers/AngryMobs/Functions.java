@@ -74,15 +74,24 @@ public class Functions {
     	LivingEntity creature = loc.getWorld().spawnCreature(loc, ct);
     	
     	if(makeAngry) {
-    		try {
-				Wolf wolf = (Wolf) creature;
-				wolf.setAngry(true);
-			} catch (Exception e) {
-				return creature;
-			}
+			Wolf wolf = (Wolf) creature;
+			wolf.setAngry(true);
     	}
         return creature;
     }
+	
+	public static LivingEntity[] spawnStackedMob(Location loc, String type) {
+		
+		String[] types = type.split(":");
+		LivingEntity[] mobs = new LivingEntity[types.length];
+		mobs[0] = spawnMob(loc, types[0]);
+		for (int i = 1; i < types.length; i++) {
+			
+			mobs[i] = spawnMob(loc, types[i]);
+			mobs[i-1].setPassenger(mobs[i]);
+		}
+		return mobs;
+	}
 	
 	/**
 	 * Returns the string with the first letter capitalized, the rest lowercase.
@@ -501,6 +510,22 @@ public class Functions {
     		} else {
     			toReturn = toReturn + separator + objects[i].toString();
     		}
+		}
+    	return toReturn;
+    }
+    
+    /**
+     * Gets the CreatureType of an Entity
+     * @param e The entity that we are checking for
+     * @return Returns the CreatureType of the Entity
+     */
+    public static CreatureType getCreatureType(LivingEntity e) {
+    	CreatureType toReturn = null;
+    	for (CreatureType c : CreatureType.values()) {
+			if(isCreatureType(e, c)) {
+				toReturn = c;
+				break;
+			}
 		}
     	return toReturn;
     }
