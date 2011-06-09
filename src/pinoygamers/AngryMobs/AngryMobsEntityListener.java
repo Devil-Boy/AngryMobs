@@ -47,7 +47,7 @@ public class AngryMobsEntityListener extends EntityListener {
     			}
     		} else {
     			if (listenerDebug) {
-        			System.out.println("Just an innocent ");
+        			System.out.println("Just an innocent weakling.");
         		}
     		}
     	} else {
