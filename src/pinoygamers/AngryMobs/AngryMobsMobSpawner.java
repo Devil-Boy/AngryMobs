@@ -20,21 +20,37 @@ public class AngryMobsMobSpawner implements Runnable {
 	String world;
 	Random rand = new Random();
 	
+	/**
+	 * The constuctor creates a new AngryMobsMobSpawner object
+	 * @param plugin The plugin instance
+	 * @param config The configuration file
+	 * @param world The world
+	 */
 	public AngryMobsMobSpawner(AngryMobs plugin, Configuration config, String world) {
 		this.plugin = plugin;
 		this.config = config;
 		this.world = world;
 	}
 	
+	/**
+	 * Stops the mob spawner from spawning new mobs.
+	 */
 	public synchronized void stopIt() {
 		running = false;
 	}
 	
+	/**
+	 * Sets the wait time before the mob spawner spawns the next mob
+	 * @param wait How long should the mob spawner wait before spawning the next mob
+	 */
 	public synchronized void setWaitTime(int wait) {
 		waittime = wait;
 	}
 	
 	@Override
+	/**
+	 * Spawns monsters, determined by the config, at regular intervals, also determined by the config.
+	 */
 	public synchronized void run() {
 		while (running) {
 			try {

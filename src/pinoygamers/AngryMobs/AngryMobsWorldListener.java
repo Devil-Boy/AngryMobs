@@ -9,11 +9,18 @@ public class AngryMobsWorldListener extends WorldListener {
 	
 	private AngryMobs plugin;
 
+	/**
+	 * AngryMobsWorldListener Constructor, creates a new instance of AngryMobsWorldListener
+	 * @param plugin The plugin
+	 */
 	public AngryMobsWorldListener(AngryMobs plugin) {
 		this.plugin = plugin;
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Does certain things when the world loads, such as loading the configuration file for the world, and starting the MobSpawner class.
+	 */
 	public void onWorldLoad( WorldLoadEvent event )
 	{
 		File conffile = new File(plugin.pluginMainDir + "/" + plugin.configPrefix + event.getWorld().getName() + ".ini");
