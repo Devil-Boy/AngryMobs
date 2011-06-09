@@ -20,12 +20,19 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class AngryMobsEntityListener extends EntityListener {
     private final AngryMobs plugin;
+    /**
+     * Whether or not this listener wil output debug messages.
+     */
     public Boolean listenerDebug = false;
 
     public AngryMobsEntityListener(AngryMobs instance) {
         plugin = instance;
     }
 
+    /**
+     * Called when a creature spawns.
+     * @param event The CreatureSpawnEvent itself.
+     */
     public void onCreatureSpawn(CreatureSpawnEvent event) {
     	LivingEntity theBorn = (LivingEntity) event.getEntity();
     	if (listenerDebug) {
