@@ -502,11 +502,14 @@ public class Functions {
      * @param seperator A string that seperates each item in the array
      * @return The array in string form
      */
-    public static String arrayToString(Object[] objects, String seperator) {
+    public static String arrayToString(Object[] objects, String separator) {
     	String toReturn = "";
     	for (int i = 0; i < objects.length; i++) {
-    		toReturn = toReturn.concat(objects[i].toString());
-    		toReturn = toReturn.concat(seperator);
+    		if (i == 0) {
+    			toReturn = objects[i].toString();
+    		} else {
+    			toReturn = toReturn + separator + objects[i].toString();
+    		}
 		}
     	return toReturn;
     }
