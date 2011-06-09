@@ -35,7 +35,7 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("Pass judgement on him!");
     		}
     		if (theBorn instanceof Monster) {
-    			if (plugin.mobSpawns.contains(theBorn)) {
+    			if (plugin.mobSpawns.contains(theBorn.getEntityId())) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
             		}
