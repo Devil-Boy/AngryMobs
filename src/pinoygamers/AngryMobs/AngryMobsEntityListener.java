@@ -35,10 +35,11 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("Pass judgement on him!");
     		}
     		if (theBorn instanceof Monster) {
-    			if (plugin.mobSpawns.remove(theBorn.getEntityId()) != null) {
+    			if (plugin.mobSpawns.contains(theBorn.getEntityId())) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
             		}
+    				plugin.mobSpawns.removeLastOccurrence(theBorn.getEntityId());
     			} else {
     				event.setCancelled(true);
             		if (listenerDebug) {
