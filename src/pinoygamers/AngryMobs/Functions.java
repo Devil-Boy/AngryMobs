@@ -497,7 +497,7 @@ public class Functions {
      * @return The array in string form
      */
     public static String arrayToString(String[] array, String seperator) {
-    	String toReturn = null;
+    	String toReturn = "";
     	for (int i = 0; i < array.length; i++) {
     		toReturn = toReturn.concat(array[i]);
     		toReturn = toReturn.concat(seperator);
