@@ -57,7 +57,7 @@ public class AngryMobs extends JavaPlugin {
     	if(!folder.exists()) {
     		try {
     			folder.mkdir();
-    		}catch (Exception e) {
+    		}catch (SecurityException e) {
     			System.out.println("AngryMobs: Could not create directory, do you have the correct permissions?");
     		}
     	}
