@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
- * Handle events for all Player related events
+ * Handles all entity related events
  * @author pinoygamers
  */
 public class AngryMobsEntityListener extends EntityListener {

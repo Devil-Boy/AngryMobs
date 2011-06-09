@@ -52,6 +52,7 @@ public class AngryMobsMobSpawner implements Runnable {
 					System.out.println("Let's find a spot...");
 				}
 				String creature = config.spawnableMonsters.get(rand.nextInt(config.spawnableMonsters.size())).trim();
+				int spawnedCreatureID = 0;
 				if(creature.equalsIgnoreCase("ghast")) {
 					boolean notfound = true;
 					while(notfound) {
@@ -60,7 +61,7 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, config.disableNormalMonsters);
+							spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
 							notfound = false;
 						}
 					}
@@ -73,11 +74,14 @@ public class AngryMobsMobSpawner implements Runnable {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
 							}
-							Functions.spawnMob(theblock.getLocation(), creature, plugin.mobSpawns, config.disableNormalMonsters);
+							spawnedCreatureID = Functions.spawnMob(theblock.getLocation(), creature).getEntityId();
 							notfound = false;
 						}
 					}
 					
+				}
+				if (config.disableNormalMonsters) {
+					plugin.mobSpawns.add(spawnedCreatureID);
 				}
 			}
 		}
