@@ -35,7 +35,7 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("Pass judgement on him!");
     		}
     		if (theBorn instanceof Monster) {
-    			if (plugin.mobSpawns.contains(theBorn.getEntityId())) {
+    			if (plugin.mobSpawns.remove(theBorn.getEntityId()) != null) {
     				if (listenerDebug) {
             			System.out.println("You may live...");
             		}
@@ -55,7 +55,6 @@ public class AngryMobsEntityListener extends EntityListener {
     			System.out.println("No judgement necessary....");
     		}
     	}
-    	plugin.mobSpawns.removeLastOccurrence(theBorn.getEntityId());
     }
 }
 

@@ -489,20 +489,5 @@ public class Functions {
     	}
     	return null;
     }
-    
-    /**
-     * Turns in an array into a string
-     * @param array The array to turn into a string
-     * @param seperator A string that seperates each item in the array
-     * @return The array in string form
-     */
-    public static String arrayToString(String[] array, String seperator) {
-    	String toReturn = null;
-    	for (int i = 0; i < array.length; i++) {
-			toReturn.concat(array[i]);
-			toReturn.concat(seperator);
-		}
-    	return toReturn;
-    }
 
 }
