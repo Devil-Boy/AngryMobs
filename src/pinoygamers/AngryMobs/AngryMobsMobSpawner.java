@@ -72,7 +72,7 @@ public class AngryMobsMobSpawner implements Runnable {
 				if(creature.equalsIgnoreCase("ghast")) {
 					boolean notfound = true;
 					while(notfound) {
-						Block theblock = Functions.randomAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						Block theblock = Functions.randomBigAirBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
 						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
 							if(config.debug) {
 								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
