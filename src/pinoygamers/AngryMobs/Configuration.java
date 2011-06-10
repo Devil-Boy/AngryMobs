@@ -263,7 +263,6 @@ public class Configuration implements java.io.Serializable {
     			}else {
     				outputList.add(theValues[0]);
     			}
-    			outputList.removeFirstOccurrence(currentValue);
     		}else {
     			outputList.add(currentValue);
     		}
