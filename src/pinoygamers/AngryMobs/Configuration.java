@@ -275,7 +275,10 @@ public class Configuration implements java.io.Serializable {
     		out.write("\r\n");
     		out.write("# Spawnable Monsters\r\n");
     		out.write("#	Here you put a list of monsters that can be spawned in\r\n");
-    		out.write("#	the world. (separated by commas)\r\n");
+    		out.write("#	the world (separated by commas), and the ratios at which\r\n");
+    		out.write("#	you wish them to be spawned using. For example:\r\n");
+    		out.write("#	'Giant;5:Ghast;4' will spawn giants and ghasts in\r\n");
+    		out.write("#	a 5:4 ratio.\r\n");
     		out.write("spawnableMonsters=" + linkedListToString(spawnableMonsters) + "\r\n");
     		out.write("\r\n");
     		out.write("# Spawnable Light Level\r\n");

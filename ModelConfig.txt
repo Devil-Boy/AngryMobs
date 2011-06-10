@@ -20,7 +20,10 @@ monsterSpawnDistance=24
 
 # Spawnable Monsters
 #	Here you put a list of monsters that can be spawned in
-#	the world. (separated by commas)
+#	the world (separated by commas), and the ratios at which
+#	you wish them to be spawned using. For example:
+#	'Giant;5:Ghast;4' will spawn giants and ghasts in
+#	a 5:4 ratio.
 spawnableMonsters=Creeper,Skeleton,Spider,Zombie
 
 # Spawnable Light Level
