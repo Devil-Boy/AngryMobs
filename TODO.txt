@@ -15,6 +15,8 @@ Make a function alertNearbyMonsters(Player player) [Done]
 Edit TODO list [Complete]
 Add option to disable normal spawner thing. [Finished]
 Make monsters tougher.
+Make php script to add stuff to configuration files.
+Make configs updatable.
 
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
