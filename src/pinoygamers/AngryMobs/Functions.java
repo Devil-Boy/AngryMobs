@@ -243,12 +243,7 @@ public class Functions {
      * @return
      */
     public static Block randomAirBlock(World w, Server s, int minDistance){
-    	Location l = randomLocation(randomChunk(w));
-    	Block blockLocation = l.getBlock();
-    	while(playersInProximity(s, l, minDistance) && !safeSpawn(blockLocation) && !isAir(blockLocation)){
-    		l = randomLocation(randomChunk(w));
-    	}
-    	return blockLocation;
+    	return randomAirLocation(w, s, minDistance).getBlock();
     }
     
     /**
