@@ -34,36 +34,39 @@ public class AngryMobsEntityListener extends EntityListener {
      * @param event The CreatureSpawnEvent itself.
      */
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-    	LivingEntity theBorn = (LivingEntity) event.getEntity();
-    	if (listenerDebug) {
-			System.out.println("Creature at " + theBorn.getLocation().getBlock() + " wishes to spawn! Current allowed: " + Functions.arrayToString(plugin.mobSpawnLocations.toArray(), "; "));
-		}
-    	if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
-    		if (listenerDebug) {
-    			System.out.println("Pass judgement on him!");
+    	if(!event.isCancelled() && event.getEntity() != null) {
+    		LivingEntity theBorn = (LivingEntity) event.getEntity();
+        	if (listenerDebug) {
+    			System.out.println("Creature at " + theBorn.getLocation().getBlock() + " wishes to spawn! Current allowed: " + Functions.arrayToString(plugin.mobSpawnLocations.toArray(), "; "));
     		}
-    		if (Functions.isCreatureType(theBorn, CreatureType.MONSTER) || Functions.isCreatureType(theBorn, CreatureType.WOLF) || Functions.isCreatureType(theBorn, CreatureType.GHAST) || Functions.isCreatureType(theBorn, CreatureType.SLIME)) {
-    			if (plugin.mobSpawnLocations.contains(theBorn.getLocation().getBlock())) {
-    				if (listenerDebug) {
-            			System.out.println("You may live...");
-            		}
-    				plugin.mobSpawnLocations.removeLastOccurrence(theBorn.getLocation().getBlock());
-    			} else {
-    				event.setCancelled(true);
-            		if (listenerDebug) {
-            			System.out.println("Normal Spawn canceled!");
-            		}
-    			}
-    		} else {
-    			if (listenerDebug) {
-        			System.out.println("Just an innocent weakling.");
+        	if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
+        		if (listenerDebug) {
+        			System.out.println("Pass judgement on him!");
         		}
-    		}
-    	} else {
-    		if (listenerDebug) {
-    			System.out.println("No judgement necessary....");
-    		}
+        		if (Functions.isCreatureType(theBorn, CreatureType.MONSTER) || Functions.isCreatureType(theBorn, CreatureType.WOLF) || Functions.isCreatureType(theBorn, CreatureType.GHAST) || Functions.isCreatureType(theBorn, CreatureType.SLIME)) {
+        			if (plugin.mobSpawnLocations.contains(theBorn.getLocation().getBlock())) {
+        				if (listenerDebug) {
+                			System.out.println("You may live...");
+                		}
+        				plugin.mobSpawnLocations.removeLastOccurrence(theBorn.getLocation().getBlock());
+        			} else {
+        				event.setCancelled(true);
+                		if (listenerDebug) {
+                			System.out.println("Normal Spawn canceled!");
+                		}
+        			}
+        		} else {
+        			if (listenerDebug) {
+            			System.out.println("Just an innocent weakling.");
+            		}
+        		}
+        	} else {
+        		if (listenerDebug) {
+        			System.out.println("No judgement necessary....");
+        		}
+        	}
     	}
+    	
     }
 }
 
