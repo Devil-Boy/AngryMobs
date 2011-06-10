@@ -84,7 +84,7 @@ public class Configuration implements java.io.Serializable {
 		        alertRange = getInt("alertRange", 16);
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
 		        monsterSpawnFrequency = (int)(getDouble("monsterSpawnFrequency", 10) *1000);
-				spawnableMonsters = getList("spawnableMonsters", linkedListToString(spawnableMonsters));
+				spawnableMonsters = ratioizeList(getList("spawnableMonsters", linkedListToString(spawnableMonsters)));
 				spawnMaxLight = getInt("spawnMaxLight", 7);
 				disableNormalMonsters = getBoolean("disableNormalMonsters", false);
 			}catch (Exception ex) {
@@ -240,6 +240,36 @@ public class Configuration implements java.io.Serializable {
     }
     
     /**
+	 * Parses ratio values in lists.
+	 * @param list The LinkedList to parse.
+	 * @return A parsed LinkedList.
+	 */
+    public LinkedList<String> ratioizeList(LinkedList<String> list) {
+    	for (int i=0; i<list.size(); i++) {
+    		String currentValue = list.get(i);
+    		if (currentValue.contains(":")) {
+    			String[] theValues = currentValue.split(":");
+    			int theMultiple;
+    			if (theValues.length > 1) {
+    				try {
+        				theMultiple = Integer.parseInt(theValues[1]);
+        				for (int u=0; u<theMultiple; u++) {
+        					list.add(theValues[0]);
+        				}
+        			} catch (NumberFormatException nfe) {
+        				System.out.println(theValues[1] + " is not a number...");
+        			}
+    			}
+    			list.removeFirstOccurrence(currentValue);
+    		}
+    		if (debug) {
+    			System.out.println("Current spawnableMonsters: " + linkedListToString(list));
+    		}
+    	}
+    	return list;
+    }
+    
+    /**
 	 * Creates the configuration file using either the defaults or preset values.
 	 */
     public void createConfig() {
@@ -273,7 +303,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	Here you put a list of monsters that can be spawned in\r\n");
     		out.write("#	the world (separated by commas), and the ratios at which\r\n");
     		out.write("#	you wish them to be spawned using. For example:\r\n");
-    		out.write("#	'Giant;5:Ghast;4' will spawn giants and ghasts in\r\n");
+    		out.write("#	'Giant:5,Ghast:4' will spawn giants and ghasts in\r\n");
     		out.write("#	a 5:4 ratio.\r\n");
     		out.write("spawnableMonsters=" + linkedListToString(spawnableMonsters) + "\r\n");
     		out.write("\r\n");
