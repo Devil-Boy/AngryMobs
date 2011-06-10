@@ -493,6 +493,7 @@ public class Functions {
     	return isItSafe;
    	}
     
+    
     /**
      * Gets an entity from its ID
      * @param id The ID of the entity you are trying to obtain

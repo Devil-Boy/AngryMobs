@@ -1,0 +1,6 @@
+Here's what you need to test for
+Good luck.
+
+Make sure the plugin doens't crash.
+Make sure mobs are spawning correctly, as in they're not spawning in blocks or doing unintended behavior
+Make sure you cannot change the plugins behavior without touching the config

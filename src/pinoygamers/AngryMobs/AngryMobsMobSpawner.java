@@ -85,6 +85,21 @@ public class AngryMobsMobSpawner implements Runnable {
 						}
 					}
 					
+				}else if(creature.contains(":")) {
+					boolean notfound = true;
+					while(notfound) {
+						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
+						if(Functions.isLowerThanLightLevel(theblock, config.spawnMaxLight)) {
+							if(config.debug) {
+								System.out.println("Spawning a " + creature + " at " + theblock.getX() + ", " + theblock.getY() + ", " + theblock.getZ());
+							}
+							if (config.disableNormalMonsters) {
+								plugin.mobSpawnLocations.add(theblock.getLocation().getBlock());
+							}
+							Functions.spawnStackedMob(theblock.getLocation(), creature);
+							notfound = false;
+						}
+					}
 				}else {
 					boolean notfound = true;
 					while(notfound) {
