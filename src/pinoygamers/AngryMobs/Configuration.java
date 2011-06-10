@@ -245,15 +245,14 @@ public class Configuration implements java.io.Serializable {
 	 * @return A parsed LinkedList.
 	 */
     public LinkedList<String> ratioizeList(LinkedList<String> list) {
-    	LinkedList<String> outputList = new LinkedList();
+    	LinkedList<String> outputList = new LinkedList<String>();
     	for (String currentValue : list) {
     		if (currentValue.contains(":")) {
     			String[] theValues = currentValue.split(":");
-    			int theMultiple;
     			if (theValues.length > 1) {
     				try {
-        				theMultiple = Integer.parseInt(theValues[1]);
-        				for (int u=0; u<theMultiple; u++) {
+    					int theMultiple = Integer.parseInt(theValues[1]);
+        				for (int u = 0; u < theMultiple; u++) {
         					outputList.add(theValues[0]);
         				}
         			} catch (NumberFormatException nfe) {
