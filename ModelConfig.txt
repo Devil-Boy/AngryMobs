@@ -13,6 +13,12 @@ debug=false
 #	entity will target your player.
 alertRange=16
 
+# Monster Alert Frequency
+#	Here you set the frequency (in seconds) at which a
+#	monster within the alert range will decide that it
+#	wants to kill you.
+alertFrequency=5
+
 # Monster Spawn Proximity
 #	The minimum distance (in blocks) that a monster can spawn
 #	from a player.
