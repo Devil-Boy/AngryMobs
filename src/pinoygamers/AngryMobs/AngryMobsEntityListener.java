@@ -34,7 +34,7 @@ public class AngryMobsEntityListener extends EntityListener {
      * @param event The CreatureSpawnEvent itself.
      */
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-    	if(!event.isCancelled() && event.getEntity() != null) {
+    	if(!event.isCancelled() && event.getEntity() != null && event.getEntity() instanceof LivingEntity) {
     		LivingEntity theBorn = (LivingEntity) event.getEntity();
         	if (listenerDebug) {
     			System.out.println("Creature at " + theBorn.getLocation().getBlock() + " wishes to spawn! Current allowed: " + Functions.arrayToString(plugin.mobSpawnLocations.toArray(), "; "));

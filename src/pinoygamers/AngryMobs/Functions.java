@@ -82,7 +82,7 @@ public class Functions {
 	
 	public static LivingEntity[] spawnStackedMob(Location loc, String type) {
 		
-		String[] types = type.split(":");
+		String[] types = type.split("<");
 		LivingEntity[] mobs = new LivingEntity[types.length];
 		mobs[0] = spawnMob(loc, types[0]);
 		for (int i = 1; i < types.length; i++) {
