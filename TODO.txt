@@ -13,7 +13,8 @@ Make the light level at which mobs spawn configurable
 Import and integrate Configuration class [Done]
 Make a function alertNearbyMonsters(Player player) [Done]
 Edit TODO list [Complete]
-Add option to disable normal spawner thing.
+Add option to disable normal spawner thing. [Finished]
+Make monsters tougher.
 
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
