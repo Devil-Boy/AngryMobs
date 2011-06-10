@@ -84,11 +84,7 @@ public class Configuration implements java.io.Serializable {
 		        alertRange = getInt("alertRange", 16);
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
 		        monsterSpawnFrequency = (int)(getDouble("monsterSpawnFrequency", 10) *1000);
-				if (worldtype == World.Environment.NORMAL) {
-					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
-				} else if (worldtype == World.Environment.NETHER) {
-					spawnableMonsters = new LinkedList<String>(Arrays.asList(getString("spawnableMonsters").split(",")));
-				}
+				spawnableMonsters = getList("spawnableMonsters", linkedListToString(spawnableMonsters));
 				spawnMaxLight = getInt("spawnMaxLight", 7);
 				disableNormalMonsters = getBoolean("disableNormalMonsters", false);
 			}catch (Exception ex) {
