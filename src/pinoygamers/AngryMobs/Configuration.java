@@ -245,9 +245,8 @@ public class Configuration implements java.io.Serializable {
 	 * @return A parsed LinkedList.
 	 */
     public LinkedList<String> ratioizeList(LinkedList<String> list) {
-    	LinkedList<String> outputList = list;
-    	for (int i=0; i<list.size(); i++) {
-    		String currentValue = list.get(i);
+    	LinkedList<String> outputList = new LinkedList();
+    	for (String currentValue : list) {
     		if (currentValue.contains(":")) {
     			String[] theValues = currentValue.split(":");
     			int theMultiple;
@@ -259,9 +258,14 @@ public class Configuration implements java.io.Serializable {
         				}
         			} catch (NumberFormatException nfe) {
         				System.out.println(theValues[1] + " is not a number...");
+        				outputList.add(theValues[0]);
         			}
+    			}else {
+    				outputList.add(theValues[0]);
     			}
     			outputList.removeFirstOccurrence(currentValue);
+    		}else {
+    			outputList.add(currentValue);
     		}
     		if (debug) {
     			System.out.println("Current spawnableMonsters: " + linkedListToString(list));
