@@ -262,6 +262,9 @@ public class Configuration implements java.io.Serializable {
     			}
     			list.removeFirstOccurrence(currentValue);
     		}
+    		if (debug) {
+    			System.out.println("Current spawnableMonsters: " + linkedListToString(list));
+    		}
     	}
     	return list;
     }
