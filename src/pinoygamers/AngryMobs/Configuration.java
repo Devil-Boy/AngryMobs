@@ -266,7 +266,7 @@ public class Configuration implements java.io.Serializable {
     			outputList.add(currentValue);
     		}
     		if (debug) {
-    			System.out.println("Current spawnableMonsters: " + linkedListToString(list));
+    			System.out.println("Current spawnableMonsters: " + linkedListToString(outputList));
     		}
     	}
     	return outputList;
