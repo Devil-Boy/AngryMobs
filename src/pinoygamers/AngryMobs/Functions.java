@@ -190,6 +190,24 @@ public class Functions {
     	return l;
     }
     
+    public static Block randomBigAirBlock(World w, Server s, int minDistance) {
+    	return randomBigAirLocation(w, s, minDistance).getBlock();
+    }
+    
+    /**
+     * Returns a random aerial location from a given world that will fit a ghast, with no players within minDistance.
+     * @param w the world
+     * @param s the server
+     * @return
+     */
+    public static Location randomBigAirLocation(World w, Server s, int minDistance){
+    	Location l = randomLocation(randomChunk(w));
+    	while(playersInProximity(s, l, minDistance) && !safeGhast(l.getBlock()) && !isAir(l.getBlock())){
+    		l = randomLocation(randomChunk(w));
+    	}
+    	return l;
+    }
+    
     /**
      * Returns a random location from a given chunk.
      * @param c The chunk
