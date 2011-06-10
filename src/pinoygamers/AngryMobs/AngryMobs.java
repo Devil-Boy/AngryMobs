@@ -67,7 +67,6 @@ public class AngryMobs extends JavaPlugin {
         final AngryMobsWorldListener worldL = new AngryMobsWorldListener( this );
         
         pm.registerEvent( Event.Type.WORLD_LOAD, worldL, Event.Priority.Monitor, this );
-        pm.registerEvent( Event.Type.CREATURE_SPAWN, entityListener, Event.Priority.Monitor, this );
        
         List<World> worlds = getServer().getWorlds();
 		
@@ -88,6 +87,7 @@ public class AngryMobs extends JavaPlugin {
             dt.start();
             lockdownThreads.put(world.getName(), ml);
 		}
+        pm.registerEvent( Event.Type.CREATURE_SPAWN, entityListener, Event.Priority.Monitor, this );
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
         PluginDescriptionFile pdfFile = this.getDescription();
