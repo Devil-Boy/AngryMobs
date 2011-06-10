@@ -85,7 +85,7 @@ public class AngryMobsMobSpawner implements Runnable {
 						}
 					}
 					
-				}else if(creature.contains(":")) {
+				}else if(creature.contains("<")) {
 					boolean notfound = true;
 					while(notfound) {
 						Block theblock = Functions.randomGroundBlock(plugin.getServer().getWorld(world), plugin.getServer(), config.monsterSpawnDistance);
