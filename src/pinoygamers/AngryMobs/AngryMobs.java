@@ -39,6 +39,7 @@ public class AngryMobs extends JavaPlugin {
     public boolean debug = false;
     public HashMap<String, Configuration> worldConfigs = new HashMap<String, Configuration>();
     public HashMap<String, AngryMobsMobSpawner> spawnerThreads = new HashMap<String, AngryMobsMobSpawner>();
+    public HashMap<String, AngryMobsLockdown> lockdownThreads = new HashMap<String, AngryMobsLockdown>();
     public LinkedList<Block> mobSpawnLocations = new LinkedList<Block>();
 
     public AngryMobs() {
@@ -81,6 +82,11 @@ public class AngryMobs extends JavaPlugin {
 			Thread dispatchThread = new Thread(ms);
             dispatchThread.start();
             spawnerThreads.put(world.getName(), ms);
+            AngryMobsLockdown ml = new AngryMobsLockdown(this, worldConfigs.get(world.getName()), world.getName());
+            //ml.setWaitTime(cf.)
+            Thread dt = new Thread(ms);
+            dt.start();
+            lockdownThreads.put(world.getName(), ml);
 		}
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
@@ -94,6 +100,11 @@ public class AngryMobs extends JavaPlugin {
     		am.stopIt();
     	}
     	spawnerThreads.clear();
+    	Collection<AngryMobsLockdown> sccollect = lockdownThreads.values();
+    	for(AngryMobsLockdown st : sccollect) {
+    		st.stopIt();
+    	}
+    	lockdownThreads.clear();
 
         // NOTE: All registered events are automatically unregistered when a plugin is disabled
 

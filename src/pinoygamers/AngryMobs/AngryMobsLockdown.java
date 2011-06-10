@@ -1,5 +1,9 @@
 package pinoygamers.AngryMobs;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+
 /**
  * This is a thread that runs in each world and runs through 
  * all the players alerting all nearby monsters that don't
@@ -35,7 +39,10 @@ public class AngryMobsLockdown implements Runnable {
 			try {
 				wait(waittime);
 			} catch (InterruptedException e) {
-				
+				List<Player> players = plugin.getServer().getWorld(world).getPlayers();
+				for(Player theplayer : players) {
+					Functions.alertNearbyMonsters(theplayer, config.alertRange);
+				}
 			}
 		}
 	}
