@@ -239,6 +239,11 @@ public class Configuration implements java.io.Serializable {
     	return "";
     }
     
+    /**
+	 * Parses ratio values in lists.
+	 * @param list The LinkedList to parse.
+	 * @return A parsed LinkedList.
+	 */
     public LinkedList<String> ratioizeList(LinkedList<String> list) {
     	for (int i=0; i<list.size(); i++) {
     		String currentValue = list.get(i);
