@@ -287,7 +287,9 @@ public class Functions {
     	Entity[] theCrowd = (Entity[]) player.getNearbyEntities(range, range, range).toArray(); // Radius will be configurable later on
     	for (int i=0; i<theCrowd.length; i++) {
 			if (theCrowd[i] instanceof Monster) {
-    			((Creature) theCrowd[i]).setTarget(player);
+				if(((Creature) theCrowd[i]).getTarget() == null) {
+					((Creature) theCrowd[i]).setTarget(player);
+				}
 			}
     	}
     }

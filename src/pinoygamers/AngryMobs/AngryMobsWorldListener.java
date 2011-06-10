@@ -35,6 +35,16 @@ public class AngryMobsWorldListener extends WorldListener {
 		Thread dispatchThread = new Thread(ms);
         dispatchThread.start();
         plugin.spawnerThreads.put(event.getWorld().getName(), ms);
+        if(plugin.lockdownThreads.containsKey(event.getWorld().getName())) {
+			AngryMobsLockdown ld = plugin.lockdownThreads.get(event.getWorld().getName());
+			ld.stopIt();
+			plugin.spawnerThreads.remove(event.getWorld().getName());
+		}
+        AngryMobsLockdown ml = new AngryMobsLockdown(plugin, plugin.worldConfigs.get(event.getWorld().getName()), event.getWorld().getName());
+        //ml.setWaitTime(cf.)
+        Thread dt = new Thread(ms);
+        dt.start();
+        plugin.lockdownThreads.put(event.getWorld().getName(), ml);
 	}
 	
 	/* Waiting for the RB of bukkit to include this event.
