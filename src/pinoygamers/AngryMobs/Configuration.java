@@ -245,7 +245,7 @@ public class Configuration implements java.io.Serializable {
 	 * @return A parsed LinkedList.
 	 */
     public LinkedList<String> ratioizeList(LinkedList<String> list) {
-    	LinkedList outputList = list;
+    	LinkedList<String> outputList = list;
     	for (int i=0; i<list.size(); i++) {
     		String currentValue = list.get(i);
     		if (currentValue.contains(":")) {
