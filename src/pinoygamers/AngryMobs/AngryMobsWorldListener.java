@@ -41,7 +41,7 @@ public class AngryMobsWorldListener extends WorldListener {
 			plugin.spawnerThreads.remove(event.getWorld().getName());
 		}
         AngryMobsLockdown ml = new AngryMobsLockdown(plugin, plugin.worldConfigs.get(event.getWorld().getName()), event.getWorld().getName());
-        //ml.setWaitTime(cf.)
+        ml.setWaitTime(plugin.worldConfigs.get(event.getWorld().getName()).alertFrequency);
         Thread dt = new Thread(ms);
         dt.start();
         plugin.lockdownThreads.put(event.getWorld().getName(), ml);

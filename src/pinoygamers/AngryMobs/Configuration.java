@@ -36,7 +36,7 @@ public class Configuration implements java.io.Serializable {
 	/**
 	 * The frequency at which a monster will think about murdering you
 	 */
-	int alertFrequency = 16;
+	int alertFrequency = 5000;
 	/**
 	 * The minimum distance a monster can spawn from a player.
 	 */
@@ -86,7 +86,7 @@ public class Configuration implements java.io.Serializable {
 		        // Grab values here.
 		        debug = getBoolean("debug", false);
 		        alertRange = getInt("alertRange", 16);
-		        alertFrequency = (int)(getDouble("monsterSpawnFrequency", 5) *1000);
+		        alertFrequency = (int)(getDouble("alertFrequency", 5) *1000);
 		        monsterSpawnDistance = getInt("monsterSpawnDistance", 24);
 		        monsterSpawnFrequency = (int)(getDouble("monsterSpawnFrequency", 10) *1000);
 				spawnableMonsters = ratioizeList(getList("spawnableMonsters", linkedListToString(spawnableMonsters)));
@@ -302,7 +302,7 @@ public class Configuration implements java.io.Serializable {
     		out.write("#	Here you set the frequency (in seconds) at which a\r\n");
     		out.write("#	monster within the alert range will decide that it\r\n");
     		out.write("#	wants to kill you.\r\n");
-    		out.write("alertFrequency=" + alertFrequency + "\r\n");
+    		out.write("alertFrequency=" + ((double)alertFrequency)/(double)1000 + "\r\n");
     		out.write("\r\n");
     		out.write("# Monster Spawn Proximity\r\n");
     		out.write("#	The minimum distance (in blocks) that a monster can spawn\r\n");

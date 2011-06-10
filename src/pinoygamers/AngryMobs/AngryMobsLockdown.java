@@ -15,7 +15,7 @@ public class AngryMobsLockdown implements Runnable {
 
 	private AngryMobs plugin;
 	private boolean running = true;
-	int waittime = 10000;
+	int waittime = 5000;
 	Configuration config;
 	String world;
 	

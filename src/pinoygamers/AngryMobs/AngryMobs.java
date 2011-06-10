@@ -82,7 +82,7 @@ public class AngryMobs extends JavaPlugin {
             dispatchThread.start();
             spawnerThreads.put(world.getName(), ms);
             AngryMobsLockdown ml = new AngryMobsLockdown(this, worldConfigs.get(world.getName()), world.getName());
-            //ml.setWaitTime(cf.)
+            ml.setWaitTime(cf.alertFrequency);
             Thread dt = new Thread(ms);
             dt.start();
             lockdownThreads.put(world.getName(), ml);
