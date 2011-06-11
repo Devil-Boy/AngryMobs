@@ -21,6 +21,6 @@ Make configs updatable.
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
 add changeAllMobs [Done]
-add 
+add safeGiant
 
 For force compile: http://home.jrtechsupport.com:7272/job/AngryMobs/build?token=wet
