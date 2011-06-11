@@ -7,7 +7,7 @@ Implement config file
 create thread that spawns the monsters
 Nat - add change monster command [Done]
 Makes mobs spawn on the ground. [Function done]
-Make the light level at which mobs spawn configurable
+Make the light level at which mobs spawn configurable [Done]
 
 <Devil's TODO list>
 Import and integrate Configuration class [Done]
@@ -15,11 +15,12 @@ Make a function alertNearbyMonsters(Player player) [Done]
 Edit TODO list [Complete]
 Add option to disable normal spawner thing. [Finished]
 Make monsters tougher.
-Make php script to add stuff to configuration files.
+Make php script to add stuff to configuration files. <-- Have H4XG33K do this? 
 Make configs updatable.
 
 <Nat's TODO list>
 add changeAllNearbyMobs [Done]
 add changeAllMobs [Done]
+add 
 
 For force compile: http://home.jrtechsupport.com:7272/job/AngryMobs/build?token=wet
