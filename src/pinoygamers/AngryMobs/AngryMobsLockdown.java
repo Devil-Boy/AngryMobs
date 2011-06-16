@@ -39,10 +39,11 @@ public class AngryMobsLockdown implements Runnable {
 			try {
 				wait(waittime);
 			} catch (InterruptedException e) {
-				List<Player> players = plugin.getServer().getWorld(world).getPlayers();
-				for(Player theplayer : players) {
-					Functions.alertNearbyMonsters(theplayer, config.alertRange);
-				}
+				
+			}
+			List<Player> players = plugin.getServer().getWorld(world).getPlayers();
+			for(Player theplayer : players) {
+				Functions.alertNearbyMonsters(theplayer, config.alertRange);
 			}
 		}
 	}
