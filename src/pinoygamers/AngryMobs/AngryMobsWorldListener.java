@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.bukkit.event.world.WorldListener;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 
 public class AngryMobsWorldListener extends WorldListener {
 	
@@ -47,10 +48,17 @@ public class AngryMobsWorldListener extends WorldListener {
         plugin.lockdownThreads.put(event.getWorld().getName(), ml);
 	}
 	
-	/* Waiting for the RB of bukkit to include this event.
 	public void onWorldUnload(WorldUnloadEvent event) {
-		
+		if(plugin.spawnerThreads.containsKey(event.getWorld().getName())) {
+			AngryMobsMobSpawner am = plugin.spawnerThreads.get(event.getWorld().getName());
+			am.stopIt();
+			plugin.spawnerThreads.remove(event.getWorld().getName());
+		}
+		if(plugin.lockdownThreads.containsKey(event.getWorld().getName())) {
+			AngryMobsLockdown ld = plugin.lockdownThreads.get(event.getWorld().getName());
+			ld.stopIt();
+			plugin.spawnerThreads.remove(event.getWorld().getName());
+		}
 	}
-	*/
 
 }
