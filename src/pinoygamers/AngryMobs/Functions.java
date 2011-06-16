@@ -80,6 +80,12 @@ public class Functions {
         return creature;
     }
 	
+	/**
+	 * Spawns a mob ontop of a mob, ontop of a mob...
+	 * @param loc Where you want to spawn this madness
+	 * @param type The mobs you want to spawn from bottom up, seperated by "<". Example: "Skeleton<Giant<AngryWolf<Creeper"
+	 * @return Returns an array of the LivingEntities spawned (and stacked).
+	 */
 	public static LivingEntity[] spawnStackedMob(Location loc, String type) {
 		
 		String[] types = type.split("<");
