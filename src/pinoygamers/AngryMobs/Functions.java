@@ -551,5 +551,18 @@ public class Functions {
 		}
     	return toReturn;
     }
+    
+    /**
+     * Changes the specified entities health by a certain number
+     * @param e The entity
+     * @param value How much we want to add or subtract to the entities health
+     * @return What the health was changed to.
+     */
+    public static int changeHealth(LivingEntity e, int value) {
+    	int changedHealth = e.getHealth() + value;
+    	e.setHealth(changedHealth);
+    	return changedHealth;
+    	
+    }
 
 }
