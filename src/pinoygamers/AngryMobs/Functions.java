@@ -27,6 +27,7 @@ import org.bukkit.entity.Spider;
 import org.bukkit.entity.Squid;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
+import org.bukkit.util.Vector;
 
 import java.lang.Math;
 import java.util.LinkedList;
@@ -564,5 +565,21 @@ public class Functions {
     	return changedHealth;
     	
     }
+    
+   /**
+    * Changes the speed of any given entity
+    * @param e The entity
+    * @param multiplier What we're multiplying the speed by.
+    */
+   public static void changeSpeed(LivingEntity e, double multiplier) {
+	   
+	   Vector v = e.getVelocity();
+	   
+	   v.setX(v.getX() * multiplier);
+	   v.setY(v.getY() * multiplier);
+	   v.setZ(v.getZ() * multiplier);
+	   
+	   e.setVelocity(v);
+   }
 
 }
