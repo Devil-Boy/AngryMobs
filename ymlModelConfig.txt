@@ -2,37 +2,47 @@
 #
 # Each file only affects the world named in the filename.
 
-# debug
+#
+# World Settings
+worldOptions:
+
+# Debug
 #	This can activate debug output messages for if you
 #	understand the source code and want to find the origin
 #	of an issue.
-# alertFrequency
+    debug: false
+    
+# Alert Frequency
 #	Here you set the frequency (in seconds) at which a
 #	monster within the alert range will decide that it
 #	wants to kill you.
-# monsterSpawnDistance
+    alertFrequency: 5
+    
+# Monster Spawn Distance
 #	The minimum distance (in blocks) that a monster can spawn
 #	from a player.
+    monsterSpawnDistance: 24
+    
 # disableNormalMonsters
 #	Here you can turn off the normal monsters spawning of a
 #	world. Thus making all monsters spawned only from this
 #	plugin.
-
-worldOptions:
-    debug: false
-    alertFrequency: 5
-    monsterSpawnDistance: 24
     disableNormalMonsters: false
 
 
-# SpawnMaxLight
+#
+# Monster-specific settings
+mobs:
+
+# speed
+# spawnMaxLight
 #	This option lets you choose the maximum light level in
 #	which a monster will be able to spawn in. (0 - 15)
 # alertRange
 #	Here you set the distance (in blocks) at which a monster
 #	entity will target your player.
 
-mobs:
+
     Creeper:
         speed: -1
         ratio: 1
