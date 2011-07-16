@@ -37,6 +37,9 @@ mobs:
 # speed
 #	This is the multiplier for the monster's movement speed.
 #	A multiplier of 1 will leave the monster at normal speed.
+# ratio
+#	Here you set the ratio in which this monster will spawn
+#	in relation to other monsters.
 # spawnMaxLight
 #	This option lets you choose the maximum light level in
 #	which a monster will be able to spawn in. (0 - 15)
