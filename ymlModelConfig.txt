@@ -35,31 +35,33 @@ worldOptions:
 mobs:
 
 # speed
+#	This is the multiplier for the monster's movement speed.
+#	A multiplier of 1 will leave the monster at normal speed.
 # spawnMaxLight
 #	This option lets you choose the maximum light level in
 #	which a monster will be able to spawn in. (0 - 15)
 # alertRange
 #	Here you set the distance (in blocks) at which a monster
-#	entity will target your player.
+#	entity will target your players.
 
 
     Creeper:
-        speed: -1
+        speed: 1
         ratio: 1
         spawnMaxLight: 7
         alertRange: 16
     Skeleton:
-        speed: -1
+        speed: 1
         ratio: 1
         spawnMaxLight: 7
         alertRange: 16
     Spider:
-        speed: -1
+        speed: 1
         ratio: 1
         spawnMaxLight: 7
         alertRange: 16
     Zombie:
-        speed: -1
+        speed: 1
         ratio: 1
         spawnMaxLight: 7
         alertRange: 16
