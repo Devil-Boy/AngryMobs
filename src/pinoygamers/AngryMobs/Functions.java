@@ -502,6 +502,26 @@ public class Functions {
     	return isItSafe;
    	}
     
+    /**
+     * Sees if block area is safe for giant
+     * @param block The block area
+     * @return True if its safe, false if not.
+     */
+    public static boolean safeGiant(Block block) {
+    	boolean isItSafe = true;
+    	for (int x=-2; x<3; x++) {
+   			for (int y=-2; y<3; y++) {
+   				for (int z=-6; z<6; z++) {
+   					Block currentBlock = block.getRelative(x, y, z);
+   					if(!isAir(currentBlock)) {
+   						isItSafe = false;
+   					}
+   				}
+   	    	}
+       	}
+    	return isItSafe;
+    }
+    
     
     /**
      * Gets an entity from its ID
