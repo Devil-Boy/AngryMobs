@@ -4,10 +4,12 @@ import java.util.LinkedList;
 
 import org.bukkit.Location;
 import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerEvent;
@@ -34,6 +36,22 @@ public class AngryMobsEntityListener extends EntityListener {
      * @param event The CreatureSpawnEvent itself.
      */
     public void onCreatureSpawn(CreatureSpawnEvent event) {
+    	if(!event.isCancelled() && event.getEntity() != null && event.getEntity() instanceof LivingEntity) {
+    		Entity theBorn = event.getEntity();
+    		try{
+        		if (plugin.worldConfigs.get(theBorn.getWorld().getName()).disableNormalMonsters) {
+        			if (event.getSpawnReason() == SpawnReason.NATURAL) {
+        				theBorn.remove();
+        				if (listenerDebug) {
+        					System.out.println("Natural spawn blocked!");
+        				}
+        			}
+        		}
+        	} catch(Exception e) {
+        	}
+    	}
+    	
+    	/* Old Code
     	if(!event.isCancelled() && event.getEntity() != null && event.getEntity() instanceof LivingEntity) {
     		LivingEntity theBorn = (LivingEntity) event.getEntity();
         	if (listenerDebug) {
@@ -70,8 +88,7 @@ public class AngryMobsEntityListener extends EntityListener {
         		
         	}
         	
-    	}
-    	
+    	}*/
     }
 }
 
