@@ -28,6 +28,13 @@ worldOptions:
 #	world. Thus making all monsters spawned only from this
 #	plugin.
     disableNormalMonsters: false
+    
+# Monsters List
+#	Here you list the monsters which will be able to spawn in
+#	this world (separated by commas). You can also stack monsters
+#	by using "<". Example: "Spider<Skeleton" results in a skeleton
+#	riding a spider.
+	monsters: Creeper, Skeleton, Spider, Zombie, Spider<Skeleton
 
 
 #
