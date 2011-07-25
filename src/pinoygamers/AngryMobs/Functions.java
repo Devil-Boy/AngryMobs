@@ -601,5 +601,17 @@ public class Functions {
 	   
 	   e.setVelocity(v);
    }
+   
+   /**
+    * Checks to see if Entity is part of a stacked mob
+    * @param e The entity
+    * @return True if the entity is part of a stacked mob, false otherwise.
+    */
+   public static boolean isStackedMob(LivingEntity e) {
+	   
+	   if(e.getPassenger().isEmpty()) return false;
+	   if(e.isInsideVehicle()) return false;
+	   return true;
+   }
 
 }
