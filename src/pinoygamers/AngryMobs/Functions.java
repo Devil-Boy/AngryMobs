@@ -374,23 +374,23 @@ public class Functions {
      * @return True if the spawn isn't blocked.
      */
     public static Boolean safeSpawn(Block theBlock) {
-		if (!isAir(theBlock.getFace(BlockFace.NORTH))) {
+		if (!isAir(theBlock.getRelative(BlockFace.NORTH))) {
 			return false;
 		}
-		if (!isAir(theBlock.getFace(BlockFace.EAST))) {
+		if (!isAir(theBlock.getRelative(BlockFace.EAST))) {
 			return false;
 		}
-		if (!isAir(theBlock.getFace(BlockFace.SOUTH))) {
+		if (!isAir(theBlock.getRelative(BlockFace.SOUTH))) {
 			return false;
 		}
-		if (!isAir(theBlock.getFace(BlockFace.WEST))) {
+		if (!isAir(theBlock.getRelative(BlockFace.WEST))) {
 			return false;
 		}
-		if (!isAir(theBlock.getFace(BlockFace.UP))) {
+		if (!isAir(theBlock.getRelative(BlockFace.UP))) {
 			return false;
 		}
 		/*
-		if (isAir(theBlock.getFace(BlockFace.DOWN))) {
+		if (isAir(theBlock.getRelative(BlockFace.DOWN))) {
 			isSafe = false;
 		}
 		*/
@@ -469,7 +469,7 @@ public class Functions {
      * @return True if the block is right above the ground, false if not.
      */
     public static boolean isOnGround(Block block) {
-    	Block downBlock = block.getFace(BlockFace.DOWN);
+    	Block downBlock = block.getRelative(BlockFace.DOWN);
     	if(isAir(block)){
         	if(isAir(downBlock) || isWater(downBlock) || isLava(downBlock) || isFire(downBlock)) {
         		return false;
@@ -613,33 +613,5 @@ public class Functions {
 	   if(e.isInsideVehicle()) return false;
 	   return true;
    }
-   
-   /**
-   *
-   * @param min The (included) lower bound of the range
-   * @param max The (included) upper bound of the range
-   *
-   * @return The random value in the range
-   */
-  public static double randInRangeInc(double min, double max) {
-          return min + (Math.random() * (max - min));
-  }
-  
-  /**
-   * Returns a random block in a specified radius near a specified player
-   * @param p The unlucky fellow
-   * @param radius The radius (in minecraft coordinant plane terms)
-   * @return A random block within the radius
-   */
-  public static Block randomBlockInPlayerRadius(Player p, double radius) {
-	  Location loc = p.getLocation();
-	  
-	  double randX = randInRangeInc(loc.getX()-radius, loc.getX()+radius);
-	  double randY = randInRangeInc(loc.getY()-radius, loc.getY()+radius);
-	  double randZ = randInRangeInc(loc.getZ()-radius, loc.getZ()+radius);
-	  
-	  Location locNew = new Location(p.getWorld(), randX, randY, randZ);
-	  return locNew.getBlock();
-  }
 
 }
