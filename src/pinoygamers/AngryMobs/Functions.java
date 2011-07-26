@@ -613,5 +613,33 @@ public class Functions {
 	   if(e.isInsideVehicle()) return false;
 	   return true;
    }
+   
+   /**
+   *
+   * @param min The (included) lower bound of the range
+   * @param max The (included) upper bound of the range
+   *
+   * @return The random value in the range
+   */
+  public static double randInRangeInc(double min, double max) {
+          return min + (Math.random() * (max - min));
+  }
+  
+  /**
+   * Returns a random block in a specified radius near a specified player
+   * @param p The unlucky fellow
+   * @param radius The radius (in minecraft coordinant plane terms)
+   * @return A random block within the radius
+   */
+  public static Block randomBlockInPlayerRadius(Player p, double radius) {
+	  Location loc = p.getLocation();
+	  
+	  double randX = randInRangeInc(loc.getX()-radius, loc.getX()+radius);
+	  double randY = randInRangeInc(loc.getY()-radius, loc.getY()+radius);
+	  double randZ = randInRangeInc(loc.getZ()-radius, loc.getZ()+radius);
+	  
+	  Location locNew = new Location(p.getWorld(), randX, randY, randZ);
+	  return locNew.getBlock();
+  }
 
 }
